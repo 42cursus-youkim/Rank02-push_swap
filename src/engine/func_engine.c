@@ -6,11 +6,29 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 17:33:26 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/11 18:37:59 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/11 19:13:32 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	engine_showcase_oper(t_engine *engine)
+{
+	int			i;
+	t_status	res;
+
+	i = -1;
+	del_ydeque(engine->b);
+	engine->b = new_ydeque(3, (int [3]){10, 11, 12});
+	while (++i <= RRR)
+	{
+		printf("%s%s%s\n", HRED, get_op_name(i), END);
+		res = oper(engine, (t_op)i);
+		if (res == ERROR)
+			printf("%s%s%s\n", HBLU, "ERROR", END);
+		engine_visualize(engine);
+	}
+}
 
 //	NOTE: remove it on prod, uses PRINTF
 void	engine_visualize(t_engine *engine)
@@ -23,11 +41,11 @@ void	engine_visualize(t_engine *engine)
 		deq[0]->head, deq[1]->head, deq[2]->head};
 
 	for (int i = 0; i < size; i++) {
-		printf("%d: ", i);
+		printf("%2d: ", i);
 		for (int j = 0; j < 2; j++) {
 			if (curs[j]) {
 				if (i >= size - deq[j]->size) {
-					printf("%d ", curs[j]->num);
+					printf("%2d ", curs[j]->num);
 					curs[j] = curs[j]->lower;
 				} else {
 					printf(". ");

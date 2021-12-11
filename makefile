@@ -6,7 +6,7 @@
 #    By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/09 14:12:20 by youkim            #+#    #+#              #
-#    Updated: 2021/12/11 18:30:43 by youkim           ###   ########.fr        #
+#    Updated: 2021/12/11 19:41:53 by youkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ PKGS     := engine opers
 engineV  := \
 	push_swap init_engine func_engine
 opersV   := \
-	opers manager
+	opers manager manager_utils
 
 # ===== Macros =====
 define choose_modules

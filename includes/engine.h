@@ -25,6 +25,7 @@ typedef struct s_engine
 /*
 ** < func_engine.c > */
 
+void	engine_showcase_oper(t_engine *engine);
 void	engine_visualize(t_engine *engine);
 /*
 ** < init_engine.c > */
