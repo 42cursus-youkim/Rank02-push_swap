@@ -6,14 +6,14 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 13:44:28 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/11 16:12:15 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/11 18:30:55 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ENGINE_H
 # define ENGINE_H
 
-# include "../libft/includes/libft.h"
+# include "libft.h"
 typedef struct s_engine
 {
 	t_deque	*a;

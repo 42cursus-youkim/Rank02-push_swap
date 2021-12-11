@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 17:12:27 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/11 18:21:42 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/11 18:33:25 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ static void	oper_manager(t_engine *engine,
 		oper_f(engine, STACK_A);
 	if (op == choice[STACK_B] || op == choice[STACK_BOTH])
 		oper_f(engine, STACK_B);
+	ydeque_push(engine->hist, new_ydequenode(op));
 }
 
 /*	handles all 11 operations, use enum t_op to choose
@@ -67,8 +68,8 @@ void	oper(t_engine *engine, t_op op)
 		yerror("oper", "tried to choose nonexistant operation");
 }
 
-//	enum -> const string
-const char	*get_op_name(t_op op)
+//	enum -> string
+char	*get_op_name(t_op op)
 {
 	const static char	*op_name[11] = {
 		"SA", "SB", "SS", "PA", "PB", "RA", "RB", "RR", "RRA", "RRB", "RRR"
@@ -76,5 +77,5 @@ const char	*get_op_name(t_op op)
 
 	if (!(SA <= op && op <= RRR))
 		yerror("get_op_name", "tried to get nonexistant operation name");
-	return (op_name[op]);
+	return (new_ystr(op_name[op]));
 }

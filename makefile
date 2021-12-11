@@ -6,7 +6,7 @@
 #    By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/09 14:12:20 by youkim            #+#    #+#              #
-#    Updated: 2021/12/11 18:19:28 by youkim           ###   ########.fr        #
+#    Updated: 2021/12/11 18:30:43 by youkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ VSFLAGS  := --show-reachable=yes --error-limit=no --gen-suppressions=all \
 RM       := rm -rf
 
 PRE      := src/
-INC      := -I includes/
+INC      := -I includes/ -I libft/includes
 LIBFT    := libft/libft.a
 HGEN     := hgen
 

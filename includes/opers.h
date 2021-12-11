@@ -43,13 +43,13 @@ typedef void(*t_oper_f)(t_engine *, t_flag which);
 /*
 ** < manager.c > */
 
-t_deque		*get_deque(t_engine *engine, t_flag which);
-t_deque		*get_deque_reversed(t_engine *engine, t_flag which);
-void		oper(t_engine *engine, t_op op);
-const char	*get_op_name(t_op op);
+t_deque	*get_deque(t_engine *engine, t_flag which);
+t_deque	*get_deque_reversed(t_engine *engine, t_flag which);
+void	oper(t_engine *engine, t_op op);
+char	*get_op_name(t_op op);
 /*
 ** < opers.c > */
 
-void		oper_swap(t_engine *engine, t_flag which);
-void		oper_push(t_engine *engine, t_flag which);
+void	oper_swap(t_engine *engine, t_flag which);
+void	oper_push(t_engine *engine, t_flag which);
 #endif
