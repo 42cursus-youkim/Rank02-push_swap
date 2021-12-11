@@ -1,22 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   opers.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/11 13:44:15 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/11 15:58:17 by youkim           ###   ########.fr       */
+/*   Created: 2021/12/11 15:30:14 by youkim            #+#    #+#             */
+/*   Updated: 2021/12/11 15:30:42 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "engine.h"
+#ifndef OPERS_H
+# define OPERS_H
 
-int	main(void)
+typedef enum e_op
 {
-	t_engine	engine;
+	SA,
+	SB,
+	SS,
+	PA,
+	PB,
+	RA,
+	RB,
+	RR,
+	RRA,
+	RRB,
+	RRR,
+}	t_op;
 
-	init_engine(&engine);
-	del_engine(&engine);
-	return (0);
-}
+//	@func
+#endif

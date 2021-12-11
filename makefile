@@ -6,39 +6,48 @@
 #    By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/09 14:12:20 by youkim            #+#    #+#              #
-#    Updated: 2021/12/11 13:44:21 by youkim           ###   ########.fr        #
+#    Updated: 2021/12/11 15:58:53 by youkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # ===== Target & FLAGS =====
-NAME     := libft.a
+NAME     := push_swap
 
 CC       := gcc
-CFLAGS   := -Wall -Wextra -Werror -g3\
-			# -DCMAKE_EXE_LINKER_FLAGS="-fsanitize=address"
+CFLAGS   := -Wall -Wextra -Werror \
+			#-DCMAKE_EXE_LINKER_FLAGS="-fsanitize=address" -g
 VFLAGS   := --leak-check=full --show-leak-kinds=all \
-			--track-origins=yes \
-			# --suppressions=./macos.supp
-RM       := rm -f
+			--track-origins=yes --show-reachable=no \
+			# --suppressions=./libft/macos.supp \
+			--suppressions=./mlx.supp
+VSFLAGS  := --show-reachable=yes --error-limit=no --gen-suppressions=all \
+			# --log-file=./mlx.supp
+RM       := rm -rf
 
 PRE      := src/
 INC      := -I includes/
-
+LIBFT    := libft/libft.a
 HGEN     := hgen
 
 # ===== Packages =====
 PKGS     := engine opers
 
-engineV  := push_swap.c
+engineV  := push_swap init_engine
 opersV   :=
 
 # ===== Macros =====
 define choose_modules
-	$(foreach pkg, $(1),			\
-		$(foreach file, $($(pkg)V),	\
-			$(PRE)y$(pkg)/$(file).c	\
-		)							\
+	$(foreach pkg, $(1),\
+		$(foreach file, $($(pkg)V),\
+			$(PRE)$(pkg)/$(file).c\
+		)\
 	)
+endef
+
+define build_library
+	@echo "$(Y)<Building Library>$(E)"
+	@make all -C libft/
+	@echo "$(G)<Built Library>$(E)"
 endef
 
 # ===== Sources & Objects & Includes =====
@@ -51,11 +60,13 @@ OBJ      := $(SRC:%.c=%.o)
 	@$(CC) $(CFLAGS) $(INC) -c -o $@ $<
 
 $(NAME): $(OBJ)
-	@echo "$(V)<Archiving Object files...>$(E)"
-	@$(CC) $(CFLAGS) $@ $^
+	@$(call build_library)
+	@$(CC) $(CFLAGS) $(INC) $(LIBFT) $(MLX) -o $@ $^
 	@echo "$(G)<<$(NAME)>>$(E)"
 
 all: $(NAME)
+
+bonus: all
 
 clean:
 	@$(RM) $(OBJ)
@@ -73,34 +84,24 @@ ald: docs all
 
 docs:
 	@echo "$(G)<Generating Documentation...>$(E)"
-	set -e;\
+	@set -e;\
 		for p in $(PKGS); do\
-			$(HGEN) -I includes/y$$p.h src/y$$p;\
+			$(HGEN) -I includes/$$p.h src/$$p;\
 		done
-		@echo "$(G)<Updated Docs>$(E)"
+	@echo "$(G)<Updated Docs>$(E)"
 
-
-testdry: docs all
+test: docs all
 	@echo "$(Y)<Running Test>$(E)"
-	@$(CC) $(INC) $(NAME) test.c -o test
-	@echo "$(G)<Compiled Test>$(E)"
-
-test: testdry
-	@./test
-	@rm test
+	@./$(NAME)
 	@echo "$(G)<Ended Test>$(E)"
 
 leak: docs all
 	@echo "$(Y)<Running Leak Test>$(E)"
-	@$(CC) $(INC) $(NAME) test.c -o test
-	@colour-valgrind $(VFLAGS) ./test
-	@rm test
+	@colour-valgrind $(VFLAGS) ./$(NAME)
 
 leaksup: docs all
 	@echo "$(Y)<Creating Leak Suppressions>$(E)"
-	@$(CC) $(INC) $(NAME) test.c -o test
-	@valgrind $(VFLAGS) --gen-suppressions=yes ./test
-	@rm test
+	@valgrind $(VFLAGS) --gen-suppressions=all ./$(NAME)
 
 .PHONY: all re clean fclean test red docs
 
