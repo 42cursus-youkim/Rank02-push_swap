@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    makefile                                           :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/09 14:12:20 by youkim            #+#    #+#              #
-#    Updated: 2021/12/11 15:58:53 by youkim           ###   ########.fr        #
+#    Updated: 2021/12/11 18:19:28 by youkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 NAME     := push_swap
 
 CC       := gcc
-CFLAGS   := -Wall -Wextra -Werror \
+CFLAGS   := -Wall -Wextra -Werror -g3\
 			#-DCMAKE_EXE_LINKER_FLAGS="-fsanitize=address" -g
 VFLAGS   := --leak-check=full --show-leak-kinds=all \
 			--track-origins=yes --show-reachable=no \
@@ -32,8 +32,10 @@ HGEN     := hgen
 # ===== Packages =====
 PKGS     := engine opers
 
-engineV  := push_swap init_engine
-opersV   :=
+engineV  := \
+	push_swap init_engine func_engine
+opersV   := \
+	opers manager
 
 # ===== Macros =====
 define choose_modules
