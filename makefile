@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    makefile                                           :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/09 14:12:20 by youkim            #+#    #+#              #
-#    Updated: 2021/12/12 14:45:17 by youkim           ###   ########.fr        #
+#    Updated: 2021/12/12 19:59:14 by youkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,15 +26,15 @@ RM       := rm -rf
 PRE      := src/
 INC      := -I includes/ -I libft/includes
 LIBFT    := libft/libft.a
-HGEN     := hgen
+HGEN     := hgen #../hgen/src/run.py
 
 # ===== Packages =====
-PKGS     := engine opers
+PKGS     := opers engine
 
 engineV  := \
-	push_swap init_engine func_engine
+	push_swap init_engine func_engine show_engine
 opersV   := \
-	opers manager manager_utils
+	operations handler handler_utils
 
 # ===== Macros =====
 define choose_modules

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   manager_utils.c                                    :+:      :+:    :+:   */
+/*   handler_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 19:41:54 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/12 14:55:42 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/12 20:00:01 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,14 @@ t_deque	*get_deque(t_engine *engine, t_flag which)
 	return (NULL);
 }
 
-//	it's like get_deque but gives you the other one
-t_deque	*get_deque_reversed(t_engine *engine, t_flag which)
+void	set_deques_from_to(t_engine *engine, t_flag from, t_deque *deqs[2])
 {
-	if (!(STK_A <= which && which <= STK_B))
-		yerror("get_deque_reversed", "tried to choose nonexistant stack");
-	return (get_deque(engine, 1 - which));
+	if (!(from == STK_A || from == STK_B))
+		yerror("get_deques_from_to", "tried to choose nonexistant stack");
+	deqs[STK_FROM] = get_deque(engine, from);
+	deqs[STK_TO] = get_deque(engine, !from);
 }
 
-//	enum -> const string
 const char	*get_op_name(t_op op)
 {
 	const static char	*op_name[11] = {

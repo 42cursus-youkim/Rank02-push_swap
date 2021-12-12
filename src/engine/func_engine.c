@@ -5,61 +5,43 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/11 17:33:26 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/12 15:43:31 by youkim           ###   ########.fr       */
+/*   Created: 2021/12/12 15:55:58 by youkim            #+#    #+#             */
+/*   Updated: 2021/12/12 20:00:42 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	engine_showcase_oper(t_engine *engine)
+bool	is_deque_sorted(t_engine *engine)
 {
-	int			i;
-	t_res	res;
+	int		i;
+	t_dnode	*curs;
 
-	i = -1;
-	del_ydeque(engine->b);
-	engine->b = new_ydeque(3, (int [3]){10, 11, 12});
-	while (++i <= RRR)
+	if (engine->a->size == 0 || engine->b->size > 0)
+		return (false);
+	i = 0;
+	curs = engine->a->head->lower;
+	while (++i < engine->a->size)
 	{
-		printf("%s%s%s\n", HRED, get_op_name(i), END);
-		res = oper(engine, (t_op)i);
-		if (res == ERR)
-			printf("%s%s%s\n", HBLU, "ERR", END);
-		engine_visualize(engine);
+		printf("%d: %d, up: %d\n", i, curs->num, curs->upper->num);
+		if (curs->num < curs->upper->num)
+			return (false);
+		curs = curs->lower;
 	}
+	return (true);
 }
 
-//	NOTE: remove it on prod, uses PRINTF
-void	engine_visualize(t_engine *engine)
-{
-	const int			size = ymax(
-		engine->a->size, engine->b->size);
-	const t_deque		*deq[3] = {
-		engine->a, engine->b, engine->hist};
-	const t_dnode	*curs[3] = {
-		deq[0]->head, deq[1]->head, deq[2]->head};
+// void	partition(t_engine *engine, t_flag from)
+// {
+// 	t_deque	*deq[2];
 
-	for (int i = 0; i < size; i++) {
-		printf("%2d: ", i);
-		for (int j = 0; j < 2; j++) {
-			if (curs[j]) {
-				if (i >= size - deq[j]->size) {
-					printf("%2d ", curs[j]->num);
-					curs[j] = curs[j]->lower;
-				} else {
-					printf(". ");
-				}
-			}
-			else
-				printf(". ");
-		}
-		printf("\n");
-	}
-	printf("%s(x%d)%s ", HYEL, deq[2]->size, END);
-	for (int i = 0; i < deq[2]->size; i++) {
-		printf("%s%s%s ", HYEL, get_op_name(curs[2]->num), END);
-		curs[2] = curs[2]->lower;
-	}
-	printf("\n");
+// 	deq[STK_FROM] = get_deque(&engine, from);
+// 	deq[STK_TO] = get_deque(&engine, !from);
+// }
+
+t_res	engine_solve(t_engine *engine)
+{
+	if (is_deque_sorted(engine))
+		return (OK);
+	return (ERR);
 }

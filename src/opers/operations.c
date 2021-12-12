@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   opers.c                                            :+:      :+:    :+:   */
+/*   operations.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 15:31:28 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/12 15:43:31 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/12 20:00:15 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_res	oper_swap(t_engine *engine, t_flag which)
 {
-	t_deque		*deq;
+	t_deque	*deq;
 	t_dnode	*nodes[2];
 
 	deq = get_deque(engine, which);
@@ -31,8 +31,10 @@ t_res	oper_push(t_engine *engine, t_flag which)
 {
 	t_deque		*deqs[2];
 
-	deqs[STK_FROM] = get_deque_reversed(engine, which);
-	deqs[STK_TO] = get_deque(engine, which);
+	set_deques_from_to(engine, which, deqs);
+	// get_deques_from_to()
+	// deqs[STK_FROM] = get_deque_reversed(engine, which);
+	// deqs[STK_TO] = get_deque(engine, which);
 	if (deqs[STK_FROM]->size < 1)
 		return (ERR);
 	ydeque_push(deqs[STK_TO], ydeque_pop(deqs[STK_FROM]));

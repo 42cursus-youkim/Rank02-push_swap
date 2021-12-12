@@ -1,27 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   structure.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/11 13:44:15 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/12 20:01:03 by youkim           ###   ########.fr       */
+/*   Created: 2021/12/12 16:03:37 by youkim            #+#    #+#             */
+/*   Updated: 2021/12/12 16:06:02 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#ifndef STRUCTURE_H
+# define STRUCTURE_H
 
-int	main(void)
+typedef enum e_op
 {
-	t_engine	engine;
+	SA = 0,
+	SB,
+	SS,
+	PA,
+	PB,
+	RA,
+	RB,
+	RR,
+	RRA,
+	RRB,
+	RRR = 10,
+	NOP = -1,
+}	t_op;
 
-	init_engine(&engine, 2, (int []){2, 1, 3, 4, 5});
-	// operl(&engine, SA);
-	// oper(&engine, PB);
-	engine_showcase_oper(&engine);
-	// engine_visualize(&engine);
-	// printf("%d\n", engine_solve(&engine));
-	del_engine(&engine);
-	return (0);
-}
+typedef enum e_flag
+{
+	STK_A = 0,
+	STK_B = 1,
+	STK_BOTH = 2,
+	STK_FROM = 0,
+	STK_TO = 1,
+}	t_flag;
+
+typedef struct s_engine
+{
+	t_deque	*a;
+	t_deque	*b;
+	t_deque	*hist;
+}	t_engine;
+
+typedef t_res(*t_oper_f)(t_engine *engine, t_flag which);
+
+#endif

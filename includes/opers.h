@@ -6,44 +6,27 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 15:30:14 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/12 15:43:31 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/12 19:58:18 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef OPERS_H
 # define OPERS_H
 
-typedef enum e_op
-{
-	SA = 0,
-	SB,
-	SS,
-	PA,
-	PB,
-	RA,
-	RB,
-	RR,
-	RRA,
-	RRB,
-	RRR = 10,
-	NOP = -1,
-}	t_op;
-
-typedef t_res(*t_oper_f)(t_engine *engine, t_flag which);
-
 //	@func
 /*
-** < manager.c > */
+** < handler.c > */
 
 t_res		oper(t_engine *engine, t_op op);
 /*
-** < manager_utils.c > */
+** < handler_utils.c > */
 
 t_deque		*get_deque(t_engine *engine, t_flag which);
-t_deque		*get_deque_reversed(t_engine *engine, t_flag which);
+void		set_deques_from_to(t_engine *engine, t_flag from,
+				t_deque *deqs[2]);
 const char	*get_op_name(t_op op);
 /*
-** < opers.c > */
+** < operations.c > */
 
 t_res		oper_swap(t_engine *engine, t_flag which);
 t_res		oper_push(t_engine *engine, t_flag which);
