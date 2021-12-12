@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 19:41:54 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/12 20:00:01 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/12 20:03:17 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_deque	*get_deque(t_engine *engine, t_flag which)
 	return (NULL);
 }
 
-void	set_deques_from_to(t_engine *engine, t_flag from, t_deque *deqs[2])
+void	set_deques_from_to(t_engine *engine, t_deque *deqs[2], t_flag from)
 {
 	if (!(from == STK_A || from == STK_B))
 		yerror("get_deques_from_to", "tried to choose nonexistant stack");

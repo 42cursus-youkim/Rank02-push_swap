@@ -20,6 +20,7 @@
 ** < func_engine.c > */
 
 bool	is_deque_sorted(t_engine *engine);
+void	partition(t_engine *engine, t_flag from);
 t_res	engine_solve(t_engine *engine);
 /*
 ** < init_engine.c > */

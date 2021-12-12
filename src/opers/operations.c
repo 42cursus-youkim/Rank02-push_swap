@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 15:31:28 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/12 20:00:15 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/12 20:03:56 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,11 @@ t_res	oper_swap(t_engine *engine, t_flag which)
 	return (OK);
 }
 
-t_res	oper_push(t_engine *engine, t_flag which)
+t_res	oper_push(t_engine *engine, t_flag from)
 {
 	t_deque		*deqs[2];
 
-	set_deques_from_to(engine, which, deqs);
-	// get_deques_from_to()
-	// deqs[STK_FROM] = get_deque_reversed(engine, which);
-	// deqs[STK_TO] = get_deque(engine, which);
+	set_deques_from_to(engine, deqs, from);
 	if (deqs[STK_FROM]->size < 1)
 		return (ERR);
 	ydeque_push(deqs[STK_TO], ydeque_pop(deqs[STK_FROM]));

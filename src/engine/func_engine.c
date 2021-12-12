@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 15:55:58 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/12 20:00:42 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/12 20:06:59 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,12 @@ bool	is_deque_sorted(t_engine *engine)
 	return (true);
 }
 
-// void	partition(t_engine *engine, t_flag from)
-// {
-// 	t_deque	*deq[2];
+void	partition(t_engine *engine, t_flag from)
+{
+	t_deque	*deq[2];
 
-// 	deq[STK_FROM] = get_deque(&engine, from);
-// 	deq[STK_TO] = get_deque(&engine, !from);
-// }
+	set_deques_from_to(engine, deq, from);
+}
 
 t_res	engine_solve(t_engine *engine)
 {

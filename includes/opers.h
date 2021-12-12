@@ -22,14 +22,14 @@ t_res		oper(t_engine *engine, t_op op);
 ** < handler_utils.c > */
 
 t_deque		*get_deque(t_engine *engine, t_flag which);
-void		set_deques_from_to(t_engine *engine, t_flag from,
-				t_deque *deqs[2]);
+void		set_deques_from_to(t_engine *engine, t_deque *deqs[2],
+				t_flag from);
 const char	*get_op_name(t_op op);
 /*
 ** < operations.c > */
 
 t_res		oper_swap(t_engine *engine, t_flag which);
-t_res		oper_push(t_engine *engine, t_flag which);
+t_res		oper_push(t_engine *engine, t_flag from);
 t_res		oper_rotate(t_engine *engine, t_flag which);
 t_res		oper_rev_rotate(t_engine *engine, t_flag which);
 #endif
