@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
+#    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/09 14:12:20 by youkim            #+#    #+#              #
-#    Updated: 2021/12/12 12:47:07 by youkim           ###   ########.fr        #
+#    Updated: 2021/12/12 14:26:50 by youkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,11 +46,9 @@ define choose_modules
 	)
 endef
 
-BUILD_FLAG = all
 define build_library
-	@printf "$(V)<Building $(CU)$(LIBFT)$(V)\
-		\n\twith mode $(R)[$(BUILD_FLAG)]>\n$(E)"
-	@make $(BUILD_FLAG) -C libft/ DFLAGS="$(DFLAGS)"
+	@$(call log, G, Building $(CU)$(LIBFT)$(V))
+	@make all -C libft/ DFLAGS="$(DFLAGS)"
 	@$(call log, G, Built $(CU)$(LIBFT)$(V))
 endef
 
@@ -61,21 +59,16 @@ OBJ      = $(SRC:%.c=%.o)
 # ===== Rules =====
 %.o: %.c
 	@echo "  $(WU)$(<F)$(R) -> $(E)$(@F)"
-	@$(CC) $(CFLAGS) $(DEBUG) $(INC) -c -o $@ $<
+	@$(CC) $(CFLAGS) $(DFLAGS) $(INC) -c -o $@ $<
 
 $(NAME): $(OBJ)
 	@$(call build_library)
 	@$(CC) $(CFLAGS) $(INC) $(LIBFT) -o $@ $^
 	@$(call log, V, Linked Object files,\
-		\n\twith flag $(R)$(DEBUG)$(E)$(CFLAGS))
+		\n\twith flag $(R)$(DFLAGS)$(E)$(CFLAGS))
 	@echo "$(G)<<$(NAME)>>$(E)"
 
 all: $(NAME)
-
-color:
-	@$(call log, Y, abc)
-
-bonus: all
 
 clean:
 	@$(RM) $(OBJ)
@@ -90,10 +83,6 @@ re: fclean all
 # ===== Custom Rules =====
 red: fclean docs all cls
 ald: docs all cls
-
-debug: DEBUG=$(DFLAGS)
-debug: BUILD_FLAG=debug
-debug: clean all
 
 docs:
 	@$(call log, V, Generating Docs,...)
@@ -116,7 +105,7 @@ leaksup: docs all cls
 	@$(call log, Y, Creating Leak Suppressions,...)
 	@valgrind $(VFLAGS) --gen-suppressions=all ./$(NAME)
 
-.PHONY: all re clean fclean test red docs debug
+.PHONY: all re clean fclean test red docs
 
 # ===== Colors =====
 cls:
