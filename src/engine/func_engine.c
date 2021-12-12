@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 17:33:26 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/12 15:24:57 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/12 15:43:31 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	engine_showcase_oper(t_engine *engine)
 {
 	int			i;
-	t_status	res;
+	t_res	res;
 
 	i = -1;
 	del_ydeque(engine->b);

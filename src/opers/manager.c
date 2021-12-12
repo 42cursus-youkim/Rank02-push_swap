@@ -6,24 +6,24 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 17:12:27 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/12 15:29:48 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/12 15:43:31 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static bool	is_one_ops_ok(const t_op choice[3], t_op op, t_status stat[2])
+static bool	is_one_ops_ok(const t_op choice[3], t_op op, t_res stat[2])
 {
 	return (op != choice[STK_BOTH] && (stat[STK_A] == OK || stat[STK_B] == OK));
 }
 
-static bool	is_two_ops_ok(const t_op choice[3], t_op op, t_status stat[2])
+static bool	is_two_ops_ok(const t_op choice[3], t_op op, t_res stat[2])
 {
 	return (op == choice[STK_BOTH] && stat[STK_A] == OK && stat[STK_B] == OK);
 }
 
-static t_status	oper_handle_result(t_engine *engine,
-		const t_op choice[3], t_op op, t_status stat[2])
+static t_res	oper_handle_result(t_engine *engine,
+		const t_op choice[3], t_op op, t_res stat[2])
 {
 	if (is_one_ops_ok(choice, op, stat) || is_two_ops_ok(choice, op, stat))
 		ydeque_push(engine->hist, new_ydequenode(op));
@@ -41,10 +41,10 @@ static t_status	oper_handle_result(t_engine *engine,
 /*	is it SA? SB? or SS? this function checks it for you!
 	usage: oper_manager(engine, (t_op[3]){SA, SB, SS}, op, func);
 */
-static t_status	oper_manager(t_engine *engine,
+static t_res	oper_manager(t_engine *engine,
 		const t_op choice[3], t_op op, t_oper_f oper_f)
 {
-	t_status	stat[2];
+	t_res	stat[2];
 
 	stat[STK_A] = UNSET;
 	stat[STK_B] = UNSET;
@@ -60,7 +60,7 @@ static t_status	oper_manager(t_engine *engine,
 /*	handles all 11 operations, use enum t_op to choose
 	TODO: record operation to engine->hist
 */
-t_status	oper(t_engine *engine, t_op op)
+t_res	oper(t_engine *engine, t_op op)
 {
 	int				i;
 	const t_op		ops[4][3] = {

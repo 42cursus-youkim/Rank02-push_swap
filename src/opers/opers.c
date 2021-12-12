@@ -6,13 +6,13 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 15:31:28 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/12 15:42:12 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/12 15:43:31 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_status	oper_swap(t_engine *engine, t_flag which)
+t_res	oper_swap(t_engine *engine, t_flag which)
 {
 	t_deque		*deq;
 	t_dnode	*nodes[2];
@@ -27,7 +27,7 @@ t_status	oper_swap(t_engine *engine, t_flag which)
 	return (OK);
 }
 
-t_status	oper_push(t_engine *engine, t_flag which)
+t_res	oper_push(t_engine *engine, t_flag which)
 {
 	t_deque		*deqs[2];
 
@@ -39,7 +39,7 @@ t_status	oper_push(t_engine *engine, t_flag which)
 	return (OK);
 }
 
-t_status	oper_rotate(t_engine *engine, t_flag which)
+t_res	oper_rotate(t_engine *engine, t_flag which)
 {
 	t_deque		*deq;
 
@@ -50,7 +50,7 @@ t_status	oper_rotate(t_engine *engine, t_flag which)
 	return (OK);
 }
 
-t_status	oper_rev_rotate(t_engine *engine, t_flag which)
+t_res	oper_rev_rotate(t_engine *engine, t_flag which)
 {
 	t_deque		*deq;
 
