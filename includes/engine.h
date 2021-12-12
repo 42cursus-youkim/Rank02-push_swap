@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 13:44:28 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/12 17:51:33 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/12 20:59:58 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,9 @@
 ** < func_engine.c > */
 
 bool	is_deque_sorted(t_engine *engine);
-void	partition(t_engine *engine, t_flag from);
+void	partition(t_engine *engine, t_flag what, int size);
 t_res	engine_solve(t_engine *engine);
+t_res	inst(t_engine *engine, t_flag what, t_inst inst);
 /*
 ** < init_engine.c > */
 

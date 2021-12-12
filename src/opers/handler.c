@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   manager.c                                          :+:      :+:    :+:   */
+/*   handler.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 17:12:27 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/12 17:42:33 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/12 20:59:58 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static t_res	oper_manager(t_engine *engine,
 }
 
 /*	handles all 11 operations, use enum t_op to choose
-	TODO: record operation to engine->hist
+	FIXME: change to what and what
 */
 t_res	oper(t_engine *engine, t_op op)
 {

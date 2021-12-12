@@ -6,18 +6,18 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 15:31:28 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/12 20:03:56 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/12 20:59:58 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_res	oper_swap(t_engine *engine, t_flag which)
+t_res	oper_swap(t_engine *engine, t_flag what)
 {
 	t_deque	*deq;
 	t_dnode	*nodes[2];
 
-	deq = get_deque(engine, which);
+	deq = get_deque(engine, what);
 	if (deq->size < 2)
 		return (ERR);
 	nodes[0] = ydeque_pop(deq);
@@ -27,33 +27,33 @@ t_res	oper_swap(t_engine *engine, t_flag which)
 	return (OK);
 }
 
-t_res	oper_push(t_engine *engine, t_flag from)
+t_res	oper_push(t_engine *engine, t_flag to)
 {
 	t_deque		*deqs[2];
 
-	set_deques_from_to(engine, deqs, from);
+	set_deques_from_to(engine, deqs, !to);
 	if (deqs[STK_FROM]->size < 1)
 		return (ERR);
 	ydeque_push(deqs[STK_TO], ydeque_pop(deqs[STK_FROM]));
 	return (OK);
 }
 
-t_res	oper_rotate(t_engine *engine, t_flag which)
+t_res	oper_rotate(t_engine *engine, t_flag what)
 {
 	t_deque		*deq;
 
-	deq = get_deque(engine, which);
+	deq = get_deque(engine, what);
 	if (deq->size < 2)
 		return (ERR);
 	ydeque_push_back(deq, ydeque_pop(deq));
 	return (OK);
 }
 
-t_res	oper_rev_rotate(t_engine *engine, t_flag which)
+t_res	oper_rev_rotate(t_engine *engine, t_flag what)
 {
 	t_deque		*deq;
 
-	deq = get_deque(engine, which);
+	deq = get_deque(engine, what);
 	if (deq->size < 2)
 		return (ERR);
 	ydeque_push(deq, ydeque_pop_back(deq));

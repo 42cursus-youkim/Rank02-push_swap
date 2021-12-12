@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 15:55:58 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/12 20:06:59 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/12 21:00:32 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,29 @@ bool	is_deque_sorted(t_engine *engine)
 	return (true);
 }
 
-void	partition(t_engine *engine, t_flag from)
+//	TODO: better pivot selection
+void	partition(t_engine *engine, t_flag what, int size)
 {
-	t_deque	*deq[2];
+	int		rots;
+	int		pivot;
 
-	set_deques_from_to(engine, deq, from);
+	if (size <= 0 || size > engine->a->size)
+		return ;
+	rots = 0;
+	pivot = engine->a->tail->num;
+	while (--size >= 0)
+	{
+		printf("%d\n", engine->a->head->num);
+		if (engine->a->head->num <= pivot)
+			inst(engine, what, PUSH);
+		else
+		{
+			inst(engine, what, ROT);
+			rots++;
+		}
+	}
+	while (--rots >= 0)
+		inst(engine, what, RROT);
 }
 
 t_res	engine_solve(t_engine *engine)
@@ -43,4 +61,14 @@ t_res	engine_solve(t_engine *engine)
 	if (is_deque_sorted(engine))
 		return (OK);
 	return (ERR);
+}
+
+//	deque agnostic instructions for actual algorithm
+t_res	inst(t_engine *engine, t_flag what, t_inst inst)
+{
+	const t_op		ops[2][4] = {{SA, RA, RRA, PB}, {SB, RB, RRB, PA}};
+
+	if (!(what == STK_A || what == STK_B || (SWAP <= inst && inst <= PUSH)))
+		return (ERR);
+	return (oper(engine, ops[what][inst]));
 }

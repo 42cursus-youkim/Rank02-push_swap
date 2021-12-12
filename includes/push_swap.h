@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 16:10:56 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/12 20:00:26 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/12 20:49:17 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,5 @@
 		do { oper(engine, op);			\
 			system("clear");			\
 			engine_visualize(engine);	\
-			usleep(400000); } while (0);
+			usleep(200000); } while (0);
 #endif

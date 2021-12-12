@@ -6,19 +6,19 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 19:41:54 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/12 20:03:17 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/12 20:59:58 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_deque	*get_deque(t_engine *engine, t_flag which)
+t_deque	*get_deque(t_engine *engine, t_flag what)
 {
-	if (which == STK_A)
+	if (what == STK_A)
 		return (engine->a);
-	else if (which == STK_B)
+	else if (what == STK_B)
 		return (engine->b);
-	else if (which == STK_BOTH)
+	else if (what == STK_BOTH)
 		yerror("get_deque", "STK_BOTH is only allowed in oper_manager");
 	yerror("get_deque", "tried to choose nonexistant stack");
 	return (NULL);
