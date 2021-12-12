@@ -6,13 +6,13 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 17:12:27 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/11 19:51:01 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/12 14:24:15 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static bool	is_single_ops_ok(
+static bool	is_one_ops_ok(
 	 const t_op choice[3], t_op op, t_status stat[2])
 {
 	return ((op != choice[STACK_BOTH]
@@ -22,12 +22,28 @@ static bool	is_single_ops_ok(
 			)));
 }
 
-static bool	is_double_ops_ok(
+static bool	is_two_ops_ok(
 	 const t_op choice[3], t_op op, t_status stat[2])
 {
 	return (op == choice[STACK_BOTH]
 		&& stat[STACK_A] == SUCCESS
 		&& stat[STACK_B] == SUCCESS);
+}
+
+static t_status	oper_handle_result(t_engine *engine,
+		const t_op choice[3], t_op op, t_status stat[2])
+{
+	if (is_one_ops_ok(choice, op, stat) || is_two_ops_ok(choice, op, stat))
+		ydeque_push(engine->hist, new_ydequenode(op));
+	else
+	{
+		if (stat[STACK_A] == SUCCESS)
+			ydeque_push(engine->hist, new_ydequenode(choice[STACK_A]));
+		else if (stat[STACK_B] == SUCCESS)
+			ydeque_push(engine->hist, new_ydequenode(choice[STACK_B]));
+		return (ERROR);
+	}
+	return (SUCCESS);
 }
 
 /*	is it SA? SB? or SS? this function checks it for you!
@@ -46,18 +62,7 @@ static t_status	oper_manager(t_engine *engine,
 		stat[STACK_A] = oper_f(engine, STACK_A);
 	if (op == choice[STACK_B] || op == choice[STACK_BOTH])
 		stat[STACK_B] = oper_f(engine, STACK_B);
-	if ((is_single_ops_ok(choice, op, stat)
-			|| is_double_ops_ok(choice, op, stat)) == true)
-		ydeque_push(engine->hist, new_ydequenode(op));
-	else
-	{
-		if (stat[STACK_A] == SUCCESS)
-			ydeque_push(engine->hist, new_ydequenode(choice[STACK_A]));
-		else if (stat[STACK_B] == SUCCESS)
-			ydeque_push(engine->hist, new_ydequenode(choice[STACK_B]));
-		return (ERROR);
-	}
-	return (SUCCESS);
+	return (oper_handle_result(engine, choice, op, stat));
 }
 
 /*	handles all 11 operations, use enum t_op to choose

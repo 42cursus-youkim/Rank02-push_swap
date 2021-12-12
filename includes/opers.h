@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 15:30:14 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/11 19:04:57 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/12 14:21:23 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef enum e_flag
 	STACK_TO = 1,
 }	t_flag;
 
-typedef t_status(*t_oper_f)(t_engine *, t_flag which);
+typedef t_status	(*t_oper_f)(t_engine *engine, t_flag which);
 
 //	@func
 /*
