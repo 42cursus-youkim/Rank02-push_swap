@@ -6,7 +6,7 @@
 #    By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/09 14:12:20 by youkim            #+#    #+#              #
-#    Updated: 2021/12/12 11:13:41 by youkim           ###   ########.fr        #
+#    Updated: 2021/12/12 12:47:07 by youkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,8 @@
 NAME     := push_swap
 
 CC       := gcc
-CFLAGS   := -Wall -Wextra -Werror\
-			#-DCMAKE_EXE_LINKER_FLAGS="-fsanitize=address"
+CFLAGS   := -Wall -Wextra -Werror
+DFLAGS	 := -g3 #-DCMAKE_EXE_LINKER_FLAGS="-fsanitize=address"
 VFLAGS   := --leak-check=full --show-leak-kinds=all \
 			--track-origins=yes --show-reachable=no \
 			# --suppressions=./libft/macos.supp \
@@ -46,25 +46,28 @@ define choose_modules
 	)
 endef
 
+BUILD_FLAG = all
 define build_library
-	echo "debug is < $(DEBUG) >"
-	@$(call log, $(V), Builing Library, ...)
-	@make all -C libft/ DEBUG="$(DEBUG)"
-	@$(call log, $(G), Built Library)
+	@printf "$(V)<Building $(CU)$(LIBFT)$(V)\
+		\n\twith mode $(R)[$(BUILD_FLAG)]>\n$(E)"
+	@make $(BUILD_FLAG) -C libft/ DFLAGS="$(DFLAGS)"
+	@$(call log, G, Built $(CU)$(LIBFT)$(V))
 endef
-# ===== Sources & Objects & Includes =====
-SRC      := $(call choose_modules, $(PKGS))
-OBJ      := $(SRC:%.c=%.o)
 
-# ===== Recipes =====
+# ===== Sources & Objects & Includes =====
+SRC      = $(call choose_modules, $(PKGS))
+OBJ      = $(SRC:%.c=%.o)
+
+# ===== Rules =====
 %.o: %.c
-	@echo  $(subst .c,.o, $(lastword $(subst /, , $<)))
-	@$(CC) $(CFLAGS) $(INC) $(DEBUG) -c -o $@ $<
+	@echo "  $(WU)$(<F)$(R) -> $(E)$(@F)"
+	@$(CC) $(CFLAGS) $(DEBUG) $(INC) -c -o $@ $<
 
 $(NAME): $(OBJ)
-	echo $(CFLAGS)
 	@$(call build_library)
-	@$(CC) $(CFLAGS) $(INC) $(LIBFT) $(MLX) -o $@ $^
+	@$(CC) $(CFLAGS) $(INC) $(LIBFT) -o $@ $^
+	@$(call log, V, Linked Object files,\
+		\n\twith flag $(R)$(DEBUG)$(E)$(CFLAGS))
 	@echo "$(G)<<$(NAME)>>$(E)"
 
 all: $(NAME)
@@ -76,52 +79,61 @@ bonus: all
 
 clean:
 	@$(RM) $(OBJ)
-	@$(call log, $(V), Cleaned Object files)
+	@$(call log, R, Cleaned Object files)
 
 fclean: clean
 	@$(RM) $(NAME)
-	@$(call log, $(Y), Cleaned Names)
+	@$(call log, R, Cleaned Names)
 
 re: fclean all
 
-# ===== Custom Recipes =====
-red: fclean docs all
-ald: docs all
+# ===== Custom Rules =====
+red: fclean docs all cls
+ald: docs all cls
 
-debug: DEBUG = -g
-debug: all
+debug: DEBUG=$(DFLAGS)
+debug: BUILD_FLAG=debug
+debug: clean all
 
 docs:
-	@$(call log, $(V), Generating Docs,...)
+	@$(call log, V, Generating Docs,...)
 	@set -e;\
 		for p in $(PKGS); do\
 			$(HGEN) -I includes/$$p.h src/$$p;\
 		done
-	@$(call log, $(G), Updated Docs)
+	@$(call log, G, Updated Docs)
 
-test: docs all
-	@$(call log, $(Y), Running Test,...)
+test: docs all cls
+	@$(call log, Y, Running Test,...)
 	@./$(NAME)
-	@$(call log, $(G), Ended Test)
+	@$(call log, G, Ended Test)
 
-leak: docs all
-	@$(call log, $(Y), Running Leak Test,...)
+leak: docs all cls
+	@$(call log, Y, Running Leak Test,...)
 	@colour-valgrind $(VFLAGS) ./$(NAME)
 
-leaksup: docs all
-	@$(call log, $(Y), Creating Leak Suppressions,...)
+leaksup: docs all cls
+	@$(call log, Y, Creating Leak Suppressions,...)
 	@valgrind $(VFLAGS) --gen-suppressions=all ./$(NAME)
 
 .PHONY: all re clean fclean test red docs debug
 
 # ===== Colors =====
-Y ?= \033[0;33m
-G ?= \033[0;92m
-V ?= \033[0;35m
-E ?= \033[0m
-CNAM ?= for $(Y)$(strip $(NAME)$(E))
+cls:
+	@set -e; clear
+
+R  ?= \033[0;91m
+WU ?= \033[4;37m
+C  ?= \033[0;96m
+CU ?= \033[4;36m
+Y  ?= \033[0;33m
+YU ?= \033[4;33m
+G  ?= \033[0;92m
+V  ?= \033[0;35m
+E  ?= \033[0m
+CNAM ?= for $(YU)$(strip $(NAME)$(E))
 
 define log
 	printf "$($(strip $(1)))<$(strip $(2))\
-			$(CNAM)$($(strip $(1)))$(strip $(3))>$(E)\n"
+			$(CNAM)$($(strip $(1)))$(strip $(3))$($(strip $(1)))>$(E)\n"
 endef
