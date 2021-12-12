@@ -6,7 +6,7 @@
 #    By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/09 14:12:20 by youkim            #+#    #+#              #
-#    Updated: 2021/12/11 19:41:53 by youkim           ###   ########.fr        #
+#    Updated: 2021/12/12 11:13:41 by youkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,8 @@
 NAME     := push_swap
 
 CC       := gcc
-CFLAGS   := -Wall -Wextra -Werror -g3\
-			#-DCMAKE_EXE_LINKER_FLAGS="-fsanitize=address" -g
+CFLAGS   := -Wall -Wextra -Werror\
+			#-DCMAKE_EXE_LINKER_FLAGS="-fsanitize=address"
 VFLAGS   := --leak-check=full --show-leak-kinds=all \
 			--track-origins=yes --show-reachable=no \
 			# --suppressions=./libft/macos.supp \
@@ -47,11 +47,11 @@ define choose_modules
 endef
 
 define build_library
-	@echo "$(Y)<Building Library>$(E)"
-	@make all -C libft/
-	@echo "$(G)<Built Library>$(E)"
+	echo "debug is < $(DEBUG) >"
+	@$(call log, $(V), Builing Library, ...)
+	@make all -C libft/ DEBUG="$(DEBUG)"
+	@$(call log, $(G), Built Library)
 endef
-
 # ===== Sources & Objects & Includes =====
 SRC      := $(call choose_modules, $(PKGS))
 OBJ      := $(SRC:%.c=%.o)
@@ -59,24 +59,28 @@ OBJ      := $(SRC:%.c=%.o)
 # ===== Recipes =====
 %.o: %.c
 	@echo  $(subst .c,.o, $(lastword $(subst /, , $<)))
-	@$(CC) $(CFLAGS) $(INC) -c -o $@ $<
+	@$(CC) $(CFLAGS) $(INC) $(DEBUG) -c -o $@ $<
 
 $(NAME): $(OBJ)
+	echo $(CFLAGS)
 	@$(call build_library)
 	@$(CC) $(CFLAGS) $(INC) $(LIBFT) $(MLX) -o $@ $^
 	@echo "$(G)<<$(NAME)>>$(E)"
 
 all: $(NAME)
 
+color:
+	@$(call log, Y, abc)
+
 bonus: all
 
 clean:
 	@$(RM) $(OBJ)
-	@echo "$(Y)<Cleaned Object files>$(E)"
+	@$(call log, $(V), Cleaned Object files)
 
 fclean: clean
 	@$(RM) $(NAME)
-	@echo "$(Y)<Cleaned Names>$(E)"
+	@$(call log, $(Y), Cleaned Names)
 
 re: fclean all
 
@@ -84,31 +88,40 @@ re: fclean all
 red: fclean docs all
 ald: docs all
 
+debug: DEBUG = -g
+debug: all
+
 docs:
-	@echo "$(G)<Generating Documentation...>$(E)"
+	@$(call log, $(V), Generating Docs,...)
 	@set -e;\
 		for p in $(PKGS); do\
 			$(HGEN) -I includes/$$p.h src/$$p;\
 		done
-	@echo "$(G)<Updated Docs>$(E)"
+	@$(call log, $(G), Updated Docs)
 
 test: docs all
-	@echo "$(Y)<Running Test>$(E)"
+	@$(call log, $(Y), Running Test,...)
 	@./$(NAME)
-	@echo "$(G)<Ended Test>$(E)"
+	@$(call log, $(G), Ended Test)
 
 leak: docs all
-	@echo "$(Y)<Running Leak Test>$(E)"
+	@$(call log, $(Y), Running Leak Test,...)
 	@colour-valgrind $(VFLAGS) ./$(NAME)
 
 leaksup: docs all
-	@echo "$(Y)<Creating Leak Suppressions>$(E)"
+	@$(call log, $(Y), Creating Leak Suppressions,...)
 	@valgrind $(VFLAGS) --gen-suppressions=all ./$(NAME)
 
-.PHONY: all re clean fclean test red docs
+.PHONY: all re clean fclean test red docs debug
 
 # ===== Colors =====
 Y ?= \033[0;33m
 G ?= \033[0;92m
 V ?= \033[0;35m
 E ?= \033[0m
+CNAM ?= for $(Y)$(strip $(NAME)$(E))
+
+define log
+	printf "$($(strip $(1)))<$(strip $(2))\
+			$(CNAM)$($(strip $(1)))$(strip $(3))>$(E)\n"
+endef
