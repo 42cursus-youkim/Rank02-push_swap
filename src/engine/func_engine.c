@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 15:55:58 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/12 21:00:32 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/12 21:04:05 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,31 +29,6 @@ bool	is_deque_sorted(t_engine *engine)
 		curs = curs->lower;
 	}
 	return (true);
-}
-
-//	TODO: better pivot selection
-void	partition(t_engine *engine, t_flag what, int size)
-{
-	int		rots;
-	int		pivot;
-
-	if (size <= 0 || size > engine->a->size)
-		return ;
-	rots = 0;
-	pivot = engine->a->tail->num;
-	while (--size >= 0)
-	{
-		printf("%d\n", engine->a->head->num);
-		if (engine->a->head->num <= pivot)
-			inst(engine, what, PUSH);
-		else
-		{
-			inst(engine, what, ROT);
-			rots++;
-		}
-	}
-	while (--rots >= 0)
-		inst(engine, what, RROT);
 }
 
 t_res	engine_solve(t_engine *engine)

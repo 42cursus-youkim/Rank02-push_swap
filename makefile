@@ -6,7 +6,7 @@
 #    By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/09 14:12:20 by youkim            #+#    #+#              #
-#    Updated: 2021/12/12 19:59:14 by youkim           ###   ########.fr        #
+#    Updated: 2021/12/12 21:04:33 by youkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ HGEN     := hgen #../hgen/src/run.py
 PKGS     := opers engine
 
 engineV  := \
-	push_swap init_engine func_engine show_engine
+	push_swap init_engine func_engine qsort show_engine #TODO: remove
 opersV   := \
 	operations handler handler_utils
 

@@ -21,6 +21,8 @@ t_res		oper(t_engine *engine, t_op op);
 /*
 ** < handler_utils.c > */
 
+int			head_num(t_engine *engine, t_flag what);
+int			tail_num(t_engine *engine, t_flag what);
 t_deque		*get_deque(t_engine *engine, t_flag what);
 void		set_deques_from_to(t_engine *engine, t_deque *deqs[2],
 				t_flag from);

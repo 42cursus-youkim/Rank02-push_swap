@@ -6,11 +6,21 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 19:41:54 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/12 20:59:58 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/12 21:13:45 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	head_num(t_engine *engine, t_flag what)
+{
+	return (get_deque(engine, what)->head->num);
+}
+
+int	tail_num(t_engine *engine, t_flag what)
+{
+	return (get_deque(engine, what)->tail->num);
+}
 
 t_deque	*get_deque(t_engine *engine, t_flag what)
 {

@@ -1,30 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   qsort.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/11 13:44:15 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/12 21:09:30 by youkim           ###   ########.fr       */
+/*   Created: 2021/12/12 21:04:00 by youkim            #+#    #+#             */
+/*   Updated: 2021/12/12 21:13:58 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(void)
+void	partition(t_engine *e, t_flag what, int size)
 {
-	t_engine	engine;
+	int		rots;
+	int		pivot;
 
-	init_engine(&engine, 8, (int []){4, 7, 2, 6, 5, 1, 8, 3});
-	// operl(&engine, SA);
-	// oper(&engine, PB);
-	// engine_showcase_oper(&engine);
-	engine_visualize(&engine);
-	partition(&engine, STK_A, 8);
-	engine_visualize(&engine);
-	// printf("%d\n", engine_solve(&engine));
-	// yassert(is_deque_sorted(&engine), "deque is not sorted");
-	del_engine(&engine);
-	return (0);
+	if (size <= 0 || size > get_deque(e, what)->size)
+		return ;
+	rots = 0;
+	pivot = tail_num(e, what);
+	while (--size >= 0)
+	{
+		if (head_num(e, what) <= pivot)
+			inst(e, what, PUSH);
+		else
+		{
+			inst(e, what, ROT);
+			rots++;
+		}
+	}
+	while (--rots >= 0)
+		inst(e, what, RROT);
 }
