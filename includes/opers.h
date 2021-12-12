@@ -6,15 +6,16 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 15:30:14 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/12 14:21:23 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/12 15:41:26 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef OPERS_H
 # define OPERS_H
+
 typedef enum e_op
 {
-	SA,
+	SA = 0,
 	SB,
 	SS,
 	PA,
@@ -24,20 +25,11 @@ typedef enum e_op
 	RR,
 	RRA,
 	RRB,
-	RRR,
+	RRR = 10,
 	NOP = -1,
 }	t_op;
 
-typedef enum e_flag
-{
-	STACK_A = 0,
-	STACK_B = 1,
-	STACK_BOTH = 2,
-	STACK_FROM = 0,
-	STACK_TO = 1,
-}	t_flag;
-
-typedef t_status	(*t_oper_f)(t_engine *engine, t_flag which);
+typedef t_status(*t_oper_f)(t_engine *engine, t_flag which);
 
 //	@func
 /*

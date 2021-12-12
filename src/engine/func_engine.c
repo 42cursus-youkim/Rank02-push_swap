@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 17:33:26 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/11 19:13:32 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/12 15:24:57 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void	engine_showcase_oper(t_engine *engine)
 	{
 		printf("%s%s%s\n", HRED, get_op_name(i), END);
 		res = oper(engine, (t_op)i);
-		if (res == ERROR)
-			printf("%s%s%s\n", HBLU, "ERROR", END);
+		if (res == ERR)
+			printf("%s%s%s\n", HBLU, "ERR", END);
 		engine_visualize(engine);
 	}
 }
@@ -37,7 +37,7 @@ void	engine_visualize(t_engine *engine)
 		engine->a->size, engine->b->size);
 	const t_deque		*deq[3] = {
 		engine->a, engine->b, engine->hist};
-	const t_dequenode	*curs[3] = {
+	const t_dnode	*curs[3] = {
 		deq[0]->head, deq[1]->head, deq[2]->head};
 
 	for (int i = 0; i < size; i++) {

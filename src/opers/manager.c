@@ -6,28 +6,20 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 17:12:27 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/12 14:24:15 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/12 15:29:48 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static bool	is_one_ops_ok(
-	 const t_op choice[3], t_op op, t_status stat[2])
+static bool	is_one_ops_ok(const t_op choice[3], t_op op, t_status stat[2])
 {
-	return ((op != choice[STACK_BOTH]
-			&& (
-				stat[STACK_A] == SUCCESS
-				|| stat[STACK_B] == SUCCESS
-			)));
+	return (op != choice[STK_BOTH] && (stat[STK_A] == OK || stat[STK_B] == OK));
 }
 
-static bool	is_two_ops_ok(
-	 const t_op choice[3], t_op op, t_status stat[2])
+static bool	is_two_ops_ok(const t_op choice[3], t_op op, t_status stat[2])
 {
-	return (op == choice[STACK_BOTH]
-		&& stat[STACK_A] == SUCCESS
-		&& stat[STACK_B] == SUCCESS);
+	return (op == choice[STK_BOTH] && stat[STK_A] == OK && stat[STK_B] == OK);
 }
 
 static t_status	oper_handle_result(t_engine *engine,
@@ -37,13 +29,13 @@ static t_status	oper_handle_result(t_engine *engine,
 		ydeque_push(engine->hist, new_ydequenode(op));
 	else
 	{
-		if (stat[STACK_A] == SUCCESS)
-			ydeque_push(engine->hist, new_ydequenode(choice[STACK_A]));
-		else if (stat[STACK_B] == SUCCESS)
-			ydeque_push(engine->hist, new_ydequenode(choice[STACK_B]));
-		return (ERROR);
+		if (stat[STK_A] == OK)
+			ydeque_push(engine->hist, new_ydequenode(choice[STK_A]));
+		else if (stat[STK_B] == OK)
+			ydeque_push(engine->hist, new_ydequenode(choice[STK_B]));
+		return (ERR);
 	}
-	return (SUCCESS);
+	return (OK);
 }
 
 /*	is it SA? SB? or SS? this function checks it for you!
@@ -54,14 +46,14 @@ static t_status	oper_manager(t_engine *engine,
 {
 	t_status	stat[2];
 
-	stat[STACK_A] = UNSET;
-	stat[STACK_B] = UNSET;
-	if (!choice[STACK_BOTH] && op == choice[STACK_BOTH])
+	stat[STK_A] = UNSET;
+	stat[STK_B] = UNSET;
+	if (!choice[STK_BOTH] && op == choice[STK_BOTH])
 		yerror("oper_manager", "tried to choose nonexistant stack");
-	if (op == choice[STACK_A] || op == choice[STACK_BOTH])
-		stat[STACK_A] = oper_f(engine, STACK_A);
-	if (op == choice[STACK_B] || op == choice[STACK_BOTH])
-		stat[STACK_B] = oper_f(engine, STACK_B);
+	if (op == choice[STK_A] || op == choice[STK_BOTH])
+		stat[STK_A] = oper_f(engine, STK_A);
+	if (op == choice[STK_B] || op == choice[STK_BOTH])
+		stat[STK_B] = oper_f(engine, STK_B);
 	return (oper_handle_result(engine, choice, op, stat));
 }
 
@@ -70,22 +62,17 @@ static t_status	oper_manager(t_engine *engine,
 */
 t_status	oper(t_engine *engine, t_op op)
 {
-	t_status	stat;
-	const t_op	swap[3] = {SA, SB, SS};
-	const t_op	push[3] = {PA, PB, NOP};
-	const t_op	rotate[3] = {RA, RB, RR};
-	const t_op	rev_rotate[3] = {RRA, RRB, RRR};
+	int				i;
+	const t_op		ops[4][3] = {
+		{SA, SB, SS}, {RA, RB, RR}, {RRA, RRB, RRR}, {PA, PB, NOP}};
+	const t_oper_f	oper_f[4] = {
+		oper_swap, oper_rotate, oper_rev_rotate, oper_push};
 
-	stat = UNSET;
-	if (swap[0] <= op && op <= swap[2])
-		stat = oper_manager(engine, swap, op, oper_swap);
-	else if (push[0] <= op && op <= push[1])
-		stat = oper_manager(engine, push, op, oper_push);
-	else if (rotate[0] <= op && op <= rotate[2])
-		stat = oper_manager(engine, rotate, op, oper_rotate);
-	else if (rev_rotate[0] <= op && op <= rev_rotate[2])
-		stat = oper_manager(engine, rev_rotate, op, oper_rev_rotate);
-	else
+	if (!(SA <= op && op <= RRR))
 		yerror("oper", "tried to choose nonexistant operation");
-	return (stat);
+	i = -1;
+	while (++i < 3)
+		if (ops[i][0] <= op && op <= ops[i][2])
+			return (oper_manager(engine, ops[i], op, oper_f[i]));
+	return (oper_manager(engine, ops[i], op, oper_f[i]));
 }

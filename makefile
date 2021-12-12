@@ -6,7 +6,7 @@
 #    By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/09 14:12:20 by youkim            #+#    #+#              #
-#    Updated: 2021/12/12 14:26:50 by youkim           ###   ########.fr        #
+#    Updated: 2021/12/12 14:45:17 by youkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,8 +18,7 @@ CFLAGS   := -Wall -Wextra -Werror
 DFLAGS	 := -g3 #-DCMAKE_EXE_LINKER_FLAGS="-fsanitize=address"
 VFLAGS   := --leak-check=full --show-leak-kinds=all \
 			--track-origins=yes --show-reachable=no \
-			# --suppressions=./libft/macos.supp \
-			--suppressions=./mlx.supp
+			--suppressions=./libft/macos.supp
 VSFLAGS  := --show-reachable=yes --error-limit=no --gen-suppressions=all \
 			# --log-file=./mlx.supp
 RM       := rm -rf
@@ -101,7 +100,7 @@ leak: docs all cls
 	@$(call log, Y, Running Leak Test,...)
 	@colour-valgrind $(VFLAGS) ./$(NAME)
 
-leaksup: docs all cls
+supp: docs all cls
 	@$(call log, Y, Creating Leak Suppressions,...)
 	@valgrind $(VFLAGS) --gen-suppressions=all ./$(NAME)
 
