@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 15:31:28 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/13 21:00:56 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/13 21:06:25 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static t_res	oper_swap(t_engine *engine, t_flag from)
 	return (OK);
 }
 
-static t_res	oper_pushfrom(t_engine *engine, t_flag from)
+static t_res	oper_push(t_engine *engine, t_flag from)
 {
 	t_deque		*deqs[2];
 
@@ -65,7 +65,7 @@ t_res	oper(t_engine *engine, t_flag from, t_inst inst)
 {
 	const t_op		ops[2][4] = {{SA, RA, RRA, PA}, {SB, RB, RRB, PB}};
 	const t_oper_f	oper_f[4] = {
-		oper_swap, oper_rotate, oper_rev_rotate, oper_pushfrom};
+		oper_swap, oper_rotate, oper_rev_rotate, oper_push};
 
 	if (!(from == STK_A || from == STK_B || (SWAP <= inst && inst <= PUSH)))
 		return (ERR);

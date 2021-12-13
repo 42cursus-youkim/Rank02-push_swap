@@ -6,13 +6,20 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 10:02:58 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/13 10:06:54 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/13 21:17:02 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef QUICKSORT_H
 # define QUICKSORT_H
 
+// typedef enum e_namedeqends
+// {
+// 	HI = 0,
+// 	MD = 1,
+// 	LO = 2,
+// }	t_namedeqends;
+;
 //@func
 /*
 ** < quicksort.c > */

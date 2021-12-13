@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 19:41:54 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/13 21:00:56 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/13 21:08:00 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,16 @@ const char	*get_op_name(t_op op)
 	if (!(SA <= op && op <= RRR))
 		yerror("get_op_name", "tried to get nonexistant operation name");
 	return (op_name[op]);
+}
+
+t_res	opers(t_engine *engine, t_flag from, int size, t_inst insts[])
+{
+	int		i;
+	t_res	result;
+
+	i = -1;
+	result = OK;
+	while (++i < size)
+		result = ymin(result, oper(engine, from, insts[i]));
+	return (result);
 }

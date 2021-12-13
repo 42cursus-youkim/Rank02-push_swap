@@ -25,6 +25,7 @@ t_deque		*get_deque(t_engine *engine, t_flag from);
 void		set_deques_from_to(t_engine *engine, t_deque *deqs[2],
 				t_flag from);
 const char	*get_op_name(t_op op);
+t_res		opers(t_engine *engine, t_flag from, int size, t_inst insts[]);
 /*
 ** < visualize.c > */
 

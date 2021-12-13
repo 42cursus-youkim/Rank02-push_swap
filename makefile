@@ -6,7 +6,7 @@
 #    By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/09 14:12:20 by youkim            #+#    #+#              #
-#    Updated: 2021/12/13 20:45:45 by youkim           ###   ########.fr        #
+#    Updated: 2021/12/13 21:15:17 by youkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ PKGS     := engine utils quicksort
 
 engineV    := push_swap engine checks #TODO: remove
 utilsV     := opers opers_util visualize
-quicksortV := quicksort quicksort_utils
+quicksortV := quicksort quicksort_utils smol_cases
 
 # ===== Macros =====
 define choose_modules
