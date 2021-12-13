@@ -1,34 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   engine.h                                           :+:      :+:    :+:   */
+/*   quicksort.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/11 13:44:28 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/12 20:59:58 by youkim           ###   ########.fr       */
+/*   Created: 2021/12/13 10:02:58 by youkim            #+#    #+#             */
+/*   Updated: 2021/12/13 10:03:25 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ENGINE_H
-# define ENGINE_H
+#ifndef QUICKSORT_H
+# define QUICKSORT_H
 
-# include "libft.h"
-
-//	@func
+//@func
 /*
-** < func_engine.c > */
+** < quicksort.c > */
 
-bool	is_deque_sorted(t_engine *engine);
-t_res	engine_solve(t_engine *engine);
-/*
-** < init_engine.c > */
-
-void	init_engine(t_engine *engine, int size, int *nums);
-void	del_engine(t_engine *engine);
-/*
-** < show_engine.c > */
-
-void	engine_showcase_oper(t_engine *engine);
-void	engine_visualize(t_engine *engine);
+void	partition(t_engine *e, t_flag what, int size);
 #endif

@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 15:55:58 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/12 21:04:05 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/13 09:52:54 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,4 @@ t_res	engine_solve(t_engine *engine)
 	if (is_deque_sorted(engine))
 		return (OK);
 	return (ERR);
-}
-
-//	deque agnostic instructions for actual algorithm
-t_res	inst(t_engine *engine, t_flag what, t_inst inst)
-{
-	const t_op		ops[2][4] = {{SA, RA, RRA, PB}, {SB, RB, RRB, PA}};
-
-	if (!(what == STK_A || what == STK_B || (SWAP <= inst && inst <= PUSH)))
-		return (ERR);
-	return (oper(engine, ops[what][inst]));
 }

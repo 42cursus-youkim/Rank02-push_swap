@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 17:12:27 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/12 21:03:20 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/13 10:04:22 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,16 @@ t_res	oper(t_engine *engine, t_op op)
 		if (ops[i][0] <= op && op <= ops[i][2])
 			return (oper_manager(engine, ops[i], op, oper_f[i]));
 	return (oper_manager(engine, ops[i], op, oper_f[i]));
+}
+
+//	deque agnostic instructions for actual algorithm
+t_res	inst(t_engine *engine, t_flag what, t_inst inst)
+{
+	const t_op		ops[2][4] = {{SA, RA, RRA, PB}, {SB, RB, RRB, PA}};
+	// const t_oper_f	oper_f[4] = {
+	// 						oper_swap, oper_rotate, oper_rev_rotate, oper_push};
+
+	if (!(what == STK_A || what == STK_B || (SWAP <= inst && inst <= PUSH)))
+		return (ERR);
+	return (oper(engine, ops[what][inst]));
 }
