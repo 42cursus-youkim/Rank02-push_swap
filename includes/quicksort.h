@@ -17,10 +17,14 @@
 /*
 ** < quicksort.c > */
 
-void	partition(t_engine *e, t_flag this, int size);
+void	partition(t_engine *e, t_flag from, int size);
 /*
 ** < quicksort_utils.c > */
 
-int		head_num(t_engine *engine, t_flag this);
-int		tail_num(t_engine *engine, t_flag this);
+int		head_num(t_engine *engine, t_flag from);
+int		tail_num(t_engine *engine, t_flag from);
+/*
+** < smol_cases.c > */
+
+void	sort_3(t_engine *e, t_flag from);
 #endif
