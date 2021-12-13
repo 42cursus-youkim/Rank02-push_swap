@@ -6,7 +6,7 @@
 #    By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/09 14:12:20 by youkim            #+#    #+#              #
-#    Updated: 2021/12/13 11:34:21 by youkim           ###   ########.fr        #
+#    Updated: 2021/12/13 18:59:27 by youkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ INC      := -I includes/ -I libft/includes
 LIBFT    := libft/libft.a
 
 HGEN     := hgen #../hgen/src/run.py
-TPARAM   :=  $(shell ruby -e "puts (1..8).to_a.shuffle.join(' ')")
+TPARAM   := 1 2 3 4 5 #$(shell ruby -e "puts (1..8).to_a.shuffle.join(' ')")
 TEST	 := ./$(NAME) $(TPARAM)
 # ===== Packages =====
 PKGS     := engine utils quicksort

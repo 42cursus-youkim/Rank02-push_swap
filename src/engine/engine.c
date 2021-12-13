@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 15:31:58 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/13 11:54:11 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/13 18:45:18 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_deque	*get_input_and_valdidate(const int argc, const char *argv[])
 	deque = new_ydeque(0, NULL);
 	while (--i > 0)
 	{
-		node = new_ydequenode(atoi(argv[i]));
+		node = new_ydequenode(yatoi(argv[i]));
 		ydeque_push(deque, node);
 	}
 	ydeque_show(deque);
