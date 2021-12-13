@@ -6,7 +6,7 @@
 #    By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/09 14:12:20 by youkim            #+#    #+#              #
-#    Updated: 2021/12/13 10:52:42 by youkim           ###   ########.fr        #
+#    Updated: 2021/12/13 11:34:21 by youkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,12 +26,14 @@ RM       := rm -rf
 PRE      := src/
 INC      := -I includes/ -I libft/includes
 LIBFT    := libft/libft.a
-HGEN     := hgen #../hgen/src/run.py
 
+HGEN     := hgen #../hgen/src/run.py
+TPARAM   :=  $(shell ruby -e "puts (1..8).to_a.shuffle.join(' ')")
+TEST	 := ./$(NAME) $(TPARAM)
 # ===== Packages =====
 PKGS     := engine utils quicksort
 
-engineV    := push_swap init_engine func_engine #TODO: remove
+engineV    := push_swap engine checks #TODO: remove
 utilsV     := opers opers_util visualize
 quicksortV := quicksort quicksort_utils
 
@@ -91,17 +93,17 @@ docs:
 	@$(call log, G, Updated Docs)
 
 test: docs all cls
-	@$(call log, Y, Running Test,...)
-	@./$(NAME)
+	@$(call log, Y, Running Test, \n\twith param $(R)$(TPARAM)$(E))
+	@$(TEST)
 	@$(call log, G, Ended Test)
 
 leak: docs all cls
 	@$(call log, Y, Running Leak Test,...)
-	@colour-valgrind $(VFLAGS) ./$(NAME)
+	@colour-valgrind $(VFLAGS) $(TEST)
 
 supp: docs all cls
 	@$(call log, Y, Creating Leak Suppressions,...)
-	@valgrind $(VFLAGS) --gen-suppressions=all ./$(NAME)
+	@valgrind $(VFLAGS) --gen-suppressions=all $(TEST)
 
 .PHONY: all re clean fclean test red docs
 

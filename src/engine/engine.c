@@ -1,20 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_engine.c                                      :+:      :+:    :+:   */
+/*   engine.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 15:31:58 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/11 16:14:06 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/13 11:54:11 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	init_engine(t_engine *engine, int size, int *nums)
+t_deque	*get_input_and_valdidate(const int argc, const char *argv[])
 {
-	engine->a = new_ydeque(size, nums);
+	int		i;
+	t_dnode	*node;
+	t_deque	*deque;
+
+	yassert(argc > 1, "No arguments provided");
+	i = argc;
+	deque = new_ydeque(0, NULL);
+	while (--i > 0)
+	{
+		node = new_ydequenode(atoi(argv[i]));
+		ydeque_push(deque, node);
+	}
+	ydeque_show(deque);
+	return (deque);
+}
+
+void	init_engine(t_engine *engine, const int argc, const char *argv[])
+{
+	engine->a = get_input_and_valdidate(argc, argv);
 	engine->b = new_ydeque(0, NULL);
 	engine->hist = new_ydeque(0, NULL);
 }

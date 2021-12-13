@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 13:44:28 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/12 20:59:58 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/13 11:01:12 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@
 
 //	@func
 /*
-** < func_engine.c > */
+** < checks.c > */
 
-bool	is_deque_sorted(t_engine *engine);
-t_res	engine_solve(t_engine *engine);
+bool	is_sorted(t_engine *engine);
 /*
-** < init_engine.c > */
+** < engine.c > */
 
-void	init_engine(t_engine *engine, int size, int *nums);
+t_deque	*get_input_and_valdidate(const int argc, const char *argv[]);
+void	init_engine(t_engine *engine, const int argc, const char *argv[]);
 void	del_engine(t_engine *engine);
 #endif
