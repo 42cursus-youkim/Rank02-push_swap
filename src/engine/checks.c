@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 15:55:58 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/13 11:31:37 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/13 20:13:06 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,21 @@ bool	is_sorted(t_engine *engine)
 		curs = curs->lower;
 	}
 	return (true);
+}
+
+void	check_duplicate(const int argc, const char *argv[])
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (++i < argc)
+	{
+		j = i;
+		while (++j < argc)
+		{
+			if (ystrequ(argv[i], argv[j]))
+				yerror("check_duplicate", "duplicate values");
+		}
+	}
 }

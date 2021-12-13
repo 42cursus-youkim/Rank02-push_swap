@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 15:31:28 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/13 10:50:28 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/13 19:37:18 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ t_res	oper(t_engine *engine, t_flag what, t_inst inst)
 {
 	const t_op		ops[2][4] = {{SA, RA, RRA, PA}, {SB, RB, RRB, PB}};
 	const t_oper_f	oper_f[4] = {
-							oper_swap, oper_rotate, oper_rev_rotate, oper_push};
+		oper_swap, oper_rotate, oper_rev_rotate, oper_push};
 
 	if (!(what == STK_A || what == STK_B || (SWAP <= inst && inst <= PUSH)))
 		return (ERR);

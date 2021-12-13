@@ -6,7 +6,7 @@
 #    By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/09 14:12:20 by youkim            #+#    #+#              #
-#    Updated: 2021/12/13 18:59:27 by youkim           ###   ########.fr        #
+#    Updated: 2021/12/13 19:05:28 by youkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,17 +15,19 @@ NAME     := push_swap
 
 CC       := gcc
 CFLAGS   := -Wall -Wextra -Werror
+RM       := rm -rf
+
+PRE      := src/
+INC      := -I includes/ -I libft/includes
+LIBFT    := libft/libft.a
+
+# ===== Test & Debugging =====
 DFLAGS	 := -g3 #-DCMAKE_EXE_LINKER_FLAGS="-fsanitize=address"
 VFLAGS   := --leak-check=full --show-leak-kinds=all \
 			--track-origins=yes --show-reachable=no \
 			--suppressions=./libft/macos.supp
 VSFLAGS  := --show-reachable=yes --error-limit=no --gen-suppressions=all \
 			# --log-file=./mlx.supp
-RM       := rm -rf
-
-PRE      := src/
-INC      := -I includes/ -I libft/includes
-LIBFT    := libft/libft.a
 
 HGEN     := hgen #../hgen/src/run.py
 TPARAM   := 1 2 3 4 5 #$(shell ruby -e "puts (1..8).to_a.shuffle.join(' ')")

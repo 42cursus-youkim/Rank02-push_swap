@@ -20,14 +20,11 @@
 ** < checks.c > */
 
 bool	is_sorted(t_engine *engine);
+void	check_duplicate(const int argc, const char *argv[]);
 /*
 ** < engine.c > */
 
-t_deque	*get_input_and_valdidate(const int argc, const char *argv[]);
-void	init_engine(t_engine *engine, const int argc, const char *argv[]);
+t_deque	*get_input(const int argc, const char *argv[]);
+void	init_engine(t_engine *engine, int size, int nums[]);
 void	del_engine(t_engine *engine);
-/*
-** < push_swap.c > */
-
-void	check_duplicate(const int argc, const char *argv[]);
 #endif

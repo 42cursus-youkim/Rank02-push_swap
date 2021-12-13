@@ -6,19 +6,18 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 15:31:58 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/13 18:45:18 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/13 20:15:21 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_deque	*get_input_and_valdidate(const int argc, const char *argv[])
+t_deque	*get_input(const int argc, const char *argv[])
 {
 	int		i;
 	t_dnode	*node;
 	t_deque	*deque;
 
-	yassert(argc > 1, "No arguments provided");
 	i = argc;
 	deque = new_ydeque(0, NULL);
 	while (--i > 0)
@@ -30,9 +29,9 @@ t_deque	*get_input_and_valdidate(const int argc, const char *argv[])
 	return (deque);
 }
 
-void	init_engine(t_engine *engine, const int argc, const char *argv[])
+void	init_engine(t_engine *engine, int size, int nums[])
 {
-	engine->a = get_input_and_valdidate(argc, argv);
+	engine->a = new_ydeque(size, nums); //get_input(argc, argv);
 	engine->b = new_ydeque(0, NULL);
 	engine->hist = new_ydeque(0, NULL);
 }
