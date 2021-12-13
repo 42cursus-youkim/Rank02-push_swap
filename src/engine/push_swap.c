@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 13:44:15 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/13 21:26:01 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/13 21:27:22 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(void) //(const int argc, const char *argv[])
 	// engine_showcase_oper(&engine);
 	// partition(&engine, STK_A, 8);
 	engine_visualize(&engine);
-	sort_3(&engine, STK_A);
+	smolsort_3(&engine, STK_A);
 	// oper(&engine, STK_A, PUSH);
 	engine_visualize(&engine);
 	// yassert(is_deque_sorted(&engine), "deque is not sorted");
