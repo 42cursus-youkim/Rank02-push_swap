@@ -6,13 +6,14 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 16:03:37 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/12 20:59:58 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/13 10:24:11 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTURE_H
 # define STRUCTURE_H
 
+//	instructions you'll print out
 typedef enum e_op
 {
 	SA = 0,
@@ -29,6 +30,7 @@ typedef enum e_op
 	NOP = -1,
 }	t_op;
 
+//	deque-agnostic instructions
 typedef enum e_inst
 {
 	SWAP = 0,
@@ -37,6 +39,7 @@ typedef enum e_inst
 	PUSH,
 }	t_inst;
 
+//	stack you are referring to
 typedef enum e_flag
 {
 	STK_A = 0,
@@ -46,6 +49,7 @@ typedef enum e_flag
 	STK_TO = 1,
 }	t_flag;
 
+//	one for a, one for b, one for history
 typedef struct s_engine
 {
 	t_deque	*a;
@@ -53,6 +57,6 @@ typedef struct s_engine
 	t_deque	*hist;
 }	t_engine;
 
-typedef t_res(*t_oper_f)(t_engine *engine, t_flag what);
+typedef t_res(*t_oper_f)(t_engine *engine, t_flag this);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/09 14:12:20 by youkim            #+#    #+#              #
-#    Updated: 2021/12/13 09:51:53 by youkim           ###   ########.fr        #
+#    Updated: 2021/12/13 10:52:42 by youkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,14 +29,11 @@ LIBFT    := libft/libft.a
 HGEN     := hgen #../hgen/src/run.py
 
 # ===== Packages =====
-PKGS     := opers engine quicksort
+PKGS     := engine utils quicksort
 
-engineV  := \
-	push_swap init_engine func_engine show_engine #TODO: remove
-opersV   := \
-	opers handler handler_utils
-quicksortV:= \
-	quicksort quicksort_utils
+engineV    := push_swap init_engine func_engine #TODO: remove
+utilsV     := opers opers_util visualize
+quicksortV := quicksort quicksort_utils
 
 # ===== Macros =====
 define choose_modules

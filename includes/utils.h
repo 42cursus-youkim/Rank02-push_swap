@@ -1,38 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   opers.h                                            :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 15:30:14 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/12 20:59:58 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/13 10:50:18 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef OPERS_H
-# define OPERS_H
+#ifndef UTILS_H
+# define UTILS_H
 
 //	@func
 /*
-** < handler.c > */
+** < opers.c > */
 
-t_res		oper(t_engine *engine, t_op op);
-t_res		inst(t_engine *engine, t_flag what, t_inst inst);
+t_res		oper(t_engine *engine, t_flag what, t_inst inst);
 /*
-** < handler_utils.c > */
+** < opers_util.c > */
 
-int			head_num(t_engine *engine, t_flag what);
-int			tail_num(t_engine *engine, t_flag what);
-t_deque		*get_deque(t_engine *engine, t_flag what);
+t_deque		*get_deque(t_engine *engine, t_flag this);
 void		set_deques_from_to(t_engine *engine, t_deque *deqs[2],
 				t_flag from);
 const char	*get_op_name(t_op op);
 /*
-** < opers.c > */
+** < visualize.c > */
 
-t_res		oper_swap(t_engine *engine, t_flag what);
-t_res		oper_push(t_engine *engine, t_flag to);
-t_res		oper_rotate(t_engine *engine, t_flag what);
-t_res		oper_rev_rotate(t_engine *engine, t_flag what);
+void		engine_showcase_oper(t_engine *engine);
+void		engine_visualize(t_engine *engine);
 #endif

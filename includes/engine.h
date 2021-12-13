@@ -26,9 +26,4 @@ t_res	engine_solve(t_engine *engine);
 
 void	init_engine(t_engine *engine, int size, int *nums);
 void	del_engine(t_engine *engine);
-/*
-** < show_engine.c > */
-
-void	engine_showcase_oper(t_engine *engine);
-void	engine_visualize(t_engine *engine);
 #endif

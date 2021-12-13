@@ -1,34 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handler_utils.c                                    :+:      :+:    :+:   */
+/*   opers_util.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 19:41:54 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/12 21:13:45 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/13 10:51:22 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	head_num(t_engine *engine, t_flag what)
+t_deque	*get_deque(t_engine *engine, t_flag this)
 {
-	return (get_deque(engine, what)->head->num);
-}
-
-int	tail_num(t_engine *engine, t_flag what)
-{
-	return (get_deque(engine, what)->tail->num);
-}
-
-t_deque	*get_deque(t_engine *engine, t_flag what)
-{
-	if (what == STK_A)
+	if (this == STK_A)
 		return (engine->a);
-	else if (what == STK_B)
+	else if (this == STK_B)
 		return (engine->b);
-	else if (what == STK_BOTH)
+	else if (this == STK_BOTH)
 		yerror("get_deque", "STK_BOTH is only allowed in oper_manager");
 	yerror("get_deque", "tried to choose nonexistant stack");
 	return (NULL);
