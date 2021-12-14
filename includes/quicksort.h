@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 10:02:58 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/14 19:51:23 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/14 20:10:28 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,16 @@ typedef enum e_loc
 	down,
 }	t_loc;
 
+typedef enum e_sortres
+{
+	rots = 0,
+	pushes = 1,
+}	t_sortres;
 //@func
 /*
 ** < quicksort.c > */
 
-void	partition(t_engine *e, t_flag from, int size);
+void	partition(t_engine *e, t_flag from, int size, t_sortres result[2]);
 /*
 ** < quicksort_utils.c > */
 
