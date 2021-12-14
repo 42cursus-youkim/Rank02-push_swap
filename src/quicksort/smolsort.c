@@ -6,36 +6,27 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 20:46:02 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/13 21:27:22 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/14 19:52:49 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	set_3(t_dnode *head, int *pup, int *pmid, int *pdown)
-{
-	*pup = head->num;
-	*pmid = head->lower->num;
-	*pdown = head->lower->lower->num;
-}
-
 void	smolsort_3(t_engine *e, t_flag from)
 {
-	int	up;
-	int	mid;
-	int	down;
+	int	n[3];
 
 	if (get_deque(e, from)->size != 3)
 		yerror("sort_3", "size != 3!!! why even call????");
-	set_3(get_deque(e, from)->head, &up, &mid, &down);
-	if (mid < up && up < down)
+	set_head_nums(e, from, 3, n);
+	if (n[mid] < n[up] && n[up] < n[down])
 		oper(e, from, SWAP);
-	else if (up < down && down < mid)
+	else if (n[up] < n[down] && n[down] < n[mid])
 		opers(e, from, 2, (t_inst []){RROT, SWAP});
-	else if (mid < down && down < up)
+	else if (n[mid] < n[down] && n[down] < n[up])
 		oper(e, from, ROT);
-	else if (down < up && up < mid)
+	else if (n[down] < n[up] && n[up] < n[mid])
 		oper(e, from, RROT);
-	else if (down < mid && mid < up)
+	else if (n[down] < n[mid] && n[mid] < n[up])
 		opers(e, from, 2, (t_inst []){ROT, SWAP});
 }

@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 15:31:28 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/13 21:06:25 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/14 19:47:43 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ t_res	oper(t_engine *engine, t_flag from, t_inst inst)
 	const t_oper_f	oper_f[4] = {
 		oper_swap, oper_rotate, oper_rev_rotate, oper_push};
 
-	if (!(from == STK_A || from == STK_B || (SWAP <= inst && inst <= PUSH)))
+	if (!((from == STK_A || from == STK_B) && (SWAP <= inst && inst <= PUSH)))
 		return (ERR);
 	ydeque_push_back(engine->hist, new_ydequenode(ops[from][inst]));
 	return (oper_f[inst](engine, from));

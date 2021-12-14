@@ -6,20 +6,20 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 10:02:58 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/13 21:27:22 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/14 19:51:23 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef QUICKSORT_H
 # define QUICKSORT_H
 
-// typedef enum e_namedeqends
-// {
-// 	HI = 0,
-// 	MD = 1,
-// 	LO = 2,
-// }	t_namedeqends;
-;
+typedef enum e_loc
+{
+	up,
+	mid,
+	down,
+}	t_loc;
+
 //@func
 /*
 ** < quicksort.c > */
@@ -30,6 +30,7 @@ void	partition(t_engine *e, t_flag from, int size);
 
 int		head_num(t_engine *engine, t_flag from);
 int		tail_num(t_engine *engine, t_flag from);
+void	set_head_nums(t_engine *e, t_flag from, int size, int arrs[]);
 /*
 ** < smolsort.c > */
 
