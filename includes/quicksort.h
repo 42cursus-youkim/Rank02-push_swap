@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 10:02:58 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/14 20:10:28 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/14 20:29:38 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef enum e_sortres
 /*
 ** < quicksort.c > */
 
-void	partition(t_engine *e, t_flag from, int size, t_sortres result[2]);
+void	quicksort(t_engine *e, t_flag from, int size);
 /*
 ** < quicksort_utils.c > */
 

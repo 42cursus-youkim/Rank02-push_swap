@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 13:44:15 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/13 21:27:22 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/14 20:33:05 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@
 // {
 // 	check_duplicate(argc, argv);
 // }
+void	solve(t_engine *engine)
+{
+	quicksort(engine, STK_A, get_deque(engine, STK_A)->size);
+	// partition(engine, STK_A, 8, result);
+}
 
 int	main(void) //(const int argc, const char *argv[])
 {
@@ -23,11 +28,11 @@ int	main(void) //(const int argc, const char *argv[])
 
 	// check_input(argc, argv);
 	// init_engine(&engine, argc, argv);
-	init_engine(&engine, 3, (int []){3,2,1});
+	init_engine(&engine, 8, (int []){1, 5, 2, 3, 8, 6, 7, 4});
 	// engine_showcase_oper(&engine);
-	// partition(&engine, STK_A, 8);
-	engine_visualize(&engine);
-	smolsort_3(&engine, STK_A);
+	// engine_visualize(&engine);
+	solve(&engine);
+	// smolsort_3(&engine, STK_A);
 	// oper(&engine, STK_A, PUSH);
 	engine_visualize(&engine);
 	// yassert(is_deque_sorted(&engine), "deque is not sorted");

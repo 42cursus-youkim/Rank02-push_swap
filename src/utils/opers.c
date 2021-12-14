@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 15:31:28 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/14 19:47:43 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/14 20:35:22 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ t_res	oper(t_engine *engine, t_flag from, t_inst inst)
 
 	if (!((from == STK_A || from == STK_B) && (SWAP <= inst && inst <= PUSH)))
 		return (ERR);
+	usleep(10000);
 	ydeque_push_back(engine->hist, new_ydequenode(ops[from][inst]));
 	return (oper_f[inst](engine, from));
 }

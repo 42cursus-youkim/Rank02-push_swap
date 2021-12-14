@@ -27,4 +27,8 @@ void	check_duplicate(const int argc, const char *argv[]);
 t_deque	*get_input(const int argc, const char *argv[]);
 void	init_engine(t_engine *engine, int size, int nums[]);
 void	del_engine(t_engine *engine);
+/*
+** < push_swap.c > */
+
+void	solve(t_engine *engine);
 #endif

@@ -6,13 +6,13 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 21:04:00 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/14 20:11:45 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/14 20:34:38 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	reset_sortcounter(t_engine *e, t_flag from, t_sortres result[2])
+static void	reset_sortcounter(t_sortres result[2])
 {
 	result[rots] = 0;
 	result[pushes] = 0;
@@ -39,14 +39,18 @@ static void	roll_back_up(t_engine *e, t_flag from, int rots)
 /*
 	result[2] holds the number of rotations, and number of pushes
 */
-void	partition(t_engine *e, t_flag from, int size, t_sortres result[2])
+void	quicksort(t_engine *e, t_flag from, int size)
 {
-	int	pivot;
+	int			pivot;
+	t_sortres	result[2];
 
-	if (size <= 0 || size > get_deque(e, from)->size)
+	engine_visualize(e);
+	if (size == 1 && from == STK_B)
+		return ((void)oper(e, from, PUSH));
+	if (size == 1 || size > get_deque(e, from)->size)
 		return ;
 	pivot = tail_num(e, from);
-	reset_sortcounter(e, from, result);
+	reset_sortcounter(result);
 	while (--size >= 0)
 	{
 		if (head_num(e, from) <= pivot)
@@ -55,4 +59,6 @@ void	partition(t_engine *e, t_flag from, int size, t_sortres result[2])
 			roll_down(e, from, result);
 	}
 	roll_back_up(e, from, result[rots]);
+	quicksort(e, from, result[rots]);
+	quicksort(e, !from, result[pushes]);
 }
