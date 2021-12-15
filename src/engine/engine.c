@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 15:31:58 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/15 10:03:47 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/15 17:00:25 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	engine_print_opers(t_engine *engine)
 	curs = engine->hist->head;
 	while (++i < size)
 	{
-		ywrite(1, get_op_name((t_op)curs->num));
+		ywrite(1, (char *)get_op_name((t_op)curs->num));
 		ywrite(1, "\n");
 		curs = curs->lower;
 	}

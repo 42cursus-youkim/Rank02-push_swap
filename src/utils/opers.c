@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 15:31:28 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/14 20:35:22 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/15 10:38:30 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static t_res	oper_rev_rotate(t_engine *engine, t_flag from)
 //	deque agnostic instructions for actual algorithm
 t_res	oper(t_engine *engine, t_flag from, t_inst inst)
 {
-	const t_op		ops[2][4] = {{SA, RA, RRA, PA}, {SB, RB, RRB, PB}};
+	const t_op		ops[2][4] = {{SA, RA, RRA, PB}, {SB, RB, RRB, PA}};
 	const t_oper_f	oper_f[4] = {
 		oper_swap, oper_rotate, oper_rev_rotate, oper_push};
 

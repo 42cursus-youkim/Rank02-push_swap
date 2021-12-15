@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 20:46:02 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/15 10:09:15 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/15 11:24:43 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	smolsort_2(t_engine *e, t_flag from)
 {
 	int	n[2];
 
-	set_head_nums(e, from, 2, n);
+	set_dequnpack(e, from, 2, n);
 	if (n[up] > n[mid])
 		oper(e, from, SWAP);
 }
@@ -25,7 +25,7 @@ static void	smolsort_3(t_engine *e, t_flag from)
 {
 	int	n[3];
 
-	set_head_nums(e, from, 3, n);
+	set_dequnpack(e, from, 3, n);
 	if (n[mid] < n[up] && n[up] < n[down])
 		oper(e, from, SWAP);
 	else if (n[up] < n[down] && n[down] < n[mid])

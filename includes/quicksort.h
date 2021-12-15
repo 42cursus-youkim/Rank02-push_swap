@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 10:02:58 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/14 21:08:47 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/15 11:24:43 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,16 @@ typedef enum e_sortres
 
 int		head_num(t_engine *engine, t_flag from);
 int		tail_num(t_engine *engine, t_flag from);
-void	set_head_nums(t_engine *e, t_flag from, int size, int arrs[]);
+int		get_pivot(t_engine *e, t_flag from, int size);
+void	set_dequnpack(t_engine *e, t_flag from, int size, int arr[]);
 /*
 ** < quicksort.c > */
 
 void	quicksort(t_engine *e, t_flag from, int size);
+/*
+** < quicksort_utils.c > */
+
+bool	is_sorted(t_engine *engine, t_flag from);
 /*
 ** < smolsort.c > */
 
