@@ -6,7 +6,7 @@
 #    By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/09 14:12:20 by youkim            #+#    #+#              #
-#    Updated: 2021/12/15 19:30:21 by youkim           ###   ########.fr        #
+#    Updated: 2021/12/15 19:53:34 by youkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ VSFLAGS  := --show-reachable=yes --error-limit=no --gen-suppressions=all \
 			# --log-file=./mlx.supp
 
 HGEN     := hgen #../hgen/src/run.py
-TPARAM   := $(shell ruby -e "puts (1..8).to_a.shuffle.join(' ')")
+TPARAM   := $(shell ruby -e "puts (1..16).to_a.shuffle.join(' ')")
 TEST	 := ./$(NAME) $(TPARAM)
 # ===== Packages =====
 PKGS     := engine utils quicksort

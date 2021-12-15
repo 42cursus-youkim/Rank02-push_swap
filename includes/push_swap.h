@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 16:10:56 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/13 21:27:44 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/15 19:58:15 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include "utils.h"
 # include "quicksort.h"
 
+# define printf(...) fprintf(stderr, __VA_ARGS__)
 # define operl(engine, op) 				\
 		do { oper(engine, op);			\
 			system("clear");			\
