@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 16:03:37 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/13 21:07:09 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/15 08:39:04 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef enum e_flag
 	STK_BOTH = 2,
 	STK_FROM = 0,
 	STK_TO = 1,
+	HIST = 3,
 }	t_flag;
 
 //	one for a, one for b, one for history
