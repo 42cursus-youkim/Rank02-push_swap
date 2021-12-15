@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 19:41:54 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/15 09:56:08 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/15 10:10:54 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	set_deques_from_to(t_engine *e, t_deque *deqs[2], t_flag from)
 const char	*get_op_name(t_op op)
 {
 	const static char	*op_name[11] = {
-		"SA", "SB", "SS", "PA", "PB", "RA", "RB", "RR", "RRA", "RRB", "RRR"};
+		"sa", "sb", "ss", "pa", "pb", "ra", "rb", "rr", "rra", "rrb", "rrr"};
 
 	if (!(SA <= op && op <= RRR))
 		yerror("get_op_name", "tried to get nonexistant operation name");

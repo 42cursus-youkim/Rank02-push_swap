@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 15:55:58 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/15 09:50:36 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/15 10:05:27 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,6 @@ t_deque	*get_input(const int argc, const char *argv[])
 		node = new_ydequenode(n);
 		ydeque_push(deque, node);
 	}
-	ydeque_show(deque);
+	// ydeque_show(deque);
 	return (deque);
 }

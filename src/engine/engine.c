@@ -6,15 +6,15 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 15:31:58 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/15 09:54:09 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/15 10:03:47 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	init_engine(t_engine *engine, int size, int nums[])
+void	init_engine(t_engine *engine, t_deque *input)
 {
-	engine->a = new_ydeque(size, nums);
+	engine->a = input;
 	engine->b = new_ydeque(0, NULL);
 	engine->hist = new_ydeque(0, NULL);
 }

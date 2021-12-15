@@ -25,7 +25,7 @@ t_deque	*get_input(const int argc, const char *argv[]);
 /*
 ** < engine.c > */
 
-void	init_engine(t_engine *engine, int size, int nums[]);
+void	init_engine(t_engine *engine, t_deque *input);
 void	del_engine(t_engine *engine);
 void	engine_print_opers(t_engine *engine);
 /*

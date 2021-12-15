@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 20:46:02 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/14 21:22:56 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/15 10:09:15 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,11 @@ static void	smolsort_3(t_engine *e, t_flag from)
 //	for smol size <= 3
 void	smolsort(t_engine *e, t_flag from)
 {
-	int	size;
+	const int	size = get_deque(e, from)->size;
 
-	if (get_deque(e, from)->size > 3)
+	if (size > 3)
 		yerror("smolsort", "size > 3!!! why even call????");
-	size = get_deque(e, from)->size;
-	if (size == 3)
+	else if (size == 3)
 		smolsort_3(e, from);
 	else if (size == 2)
 		smolsort_2(e, from);
