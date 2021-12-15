@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 10:02:58 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/15 11:24:43 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/15 20:11:51 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ void	set_dequnpack(t_engine *e, t_flag from, int size, int arr[]);
 /*
 ** < quicksort.c > */
 
-void	quicksort(t_engine *e, t_flag from, int size);
+void	initial_partitioning(t_engine *e);
+void	a_to_b(t_engine *e, int size);
 /*
 ** < quicksort_utils.c > */
 

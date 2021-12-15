@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 13:44:15 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/15 19:30:42 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/15 20:21:43 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ static void	check_input(const int argc, const char *argv[])
 
 void	solve(t_engine *engine)
 {
-	quicksort(engine, STK_A, get_deque(engine, STK_A)->size);
+	initial_partitioning(engine);
+	// a_to_b(engine, engine->a->size);
 	// partition(engine, STK_A, 8, result);
 }
 
