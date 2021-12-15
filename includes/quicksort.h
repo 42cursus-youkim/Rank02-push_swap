@@ -42,6 +42,10 @@ void	quicksort(t_engine *e, t_flag from, int size);
 ** < quicksort_utils.c > */
 
 bool	is_sorted(t_engine *engine, t_flag from);
+void	reset_sortcounter(t_sortres result[2]);
+void	send_to_other(t_engine *e, t_flag from, t_sortres result[2]);
+void	roll_down(t_engine *e, t_flag from, t_sortres result[2]);
+void	roll_back_up(t_engine *e, t_flag from, int rots);
 /*
 ** < smolsort.c > */
 
