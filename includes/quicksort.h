@@ -38,7 +38,7 @@ void	set_dequnpack(t_engine *e, t_flag from, int size, int arr[]);
 ** < quicksort.c > */
 
 void	initial_partitioning(t_engine *e);
-void	a_to_b(t_engine *e, int size);
+void	partition(t_engine *e, t_flag from, int size);
 /*
 ** < quicksort_utils.c > */
 
