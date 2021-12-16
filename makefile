@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
+#    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/09 14:12:20 by youkim            #+#    #+#              #
-#    Updated: 2021/12/15 19:53:34 by youkim           ###   ########.fr        #
+#    Updated: 2021/12/16 11:08:23 by youkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,8 @@ VSFLAGS  := --show-reachable=yes --error-limit=no --gen-suppressions=all \
 			# --log-file=./mlx.supp
 
 HGEN     := hgen #../hgen/src/run.py
-TPARAM   := $(shell ruby -e "puts (1..16).to_a.shuffle.join(' ')")
+TPARAM   := 2 16 4 6 3 14 1 11 15 5 7 12 10 9 8 13
+#$(shell ruby -e "puts (1..16).to_a.shuffle.join(' ')")
 TEST	 := ./$(NAME) $(TPARAM)
 # ===== Packages =====
 PKGS     := engine utils quicksort
@@ -63,9 +64,9 @@ OBJ      = $(SRC:%.c=%.o)
 	@echo "  $(WU)$(<F)$(R) -> $(E)$(@F)"
 	@$(CC) $(CFLAGS) $(DFLAGS) $(INC) -c -o $@ $<
 
-$(NAME): $(OBJ)
+$(NAME): $(OBJ) $(LIBFT)
 	@$(call build_library)
-	@$(CC) $(CFLAGS) $(INC) $(LIBFT) -o $@ $^
+	@$(CC) $(CFLAGS) $(INC) -o $@ $^
 	@$(call log, V, Linked Object files,\
 		\n\twith flag $(R)$(DFLAGS)$(E)$(CFLAGS))
 	@echo "$(G)<<$(NAME)>>$(E)"

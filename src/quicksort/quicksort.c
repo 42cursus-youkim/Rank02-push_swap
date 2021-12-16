@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 21:04:00 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/15 20:25:22 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/16 10:19:59 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,15 @@ static bool	is_should_send(t_engine *e, t_flag from, int pivot)
 }
 
 //	result[2] holds the number of rotations, and number of pushes
-void	partition(t_engine *e, t_flag from, int size)
+void	quicksort(t_engine *e, t_flag from, int size)
 {
 	int			pivot;
 	t_sortres	result[2];
 
-	if (get_deque(e, from)->size <= 3)
-		return ((void)smolsort(e, from));
+	if (size <= 1)
+		return ;
+	// if (get_deque(e, from)->size <= 3)
+	// 	return ((void)smolsort(e, from));
 	pivot = check(e, from, size, result);
 	while (--size >= 0)
 	{
@@ -59,7 +61,8 @@ void	partition(t_engine *e, t_flag from, int size)
 		else
 			roll_down(e, from, result);
 	}
-	roll_back_up(e, from, result[rots]);
+	roll_back_up(e, from, result[ROTS]);
+	printf("rot: %d, push: %d from: %d\n", result[ROTS], result[PUSHES], from);
+	quicksort(e, !from, result[PUSHES]);
 	// quicksort(e, from, result[rots]);
-	// quicksort(e, !from, result[pushes]);
 }

@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 13:44:15 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/15 20:26:43 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/16 11:40:16 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,16 @@ static void	check_input(const int argc, const char *argv[])
 void	solve(t_engine *engine)
 {
 	// initial_partitioning(engine);
-	partition(engine, STK_A, engine->a->size);
-	partition(engine, STK_B, engine->b->size);
+	int	pivot[2];
+
+	set_pivot(engine, STK_A, engine->a->size, pivot);
+	printf("pivots : %d, %d\n", pivot[LO], pivot[HI]);
 }
+// // initial_partitioning(engine);
+// if (engine->a->size <= 3)
+// 	return (smolsort(engine, STK_A));
+// quicksort(engine, STK_A, engine->a->size);
+// // partition(engine, STK_B, engine->b->size);
 
 int	main(const int argc, const char *argv[])
 {
@@ -40,7 +47,7 @@ int	main(const int argc, const char *argv[])
 	// smolsort(&engine, STK_A);
 	// oper(&engine, STK_A, PUSH);
 	// engine_visualize(&engine);
-	// yassert(is_deque_sorted(&engine), "deque is not sorted");
+	// yassert(is_sorted(&engine, STK_A), "deque is not sorted");
 	engine_print_opers(&engine);
 	del_engine(&engine);
 	return (0);

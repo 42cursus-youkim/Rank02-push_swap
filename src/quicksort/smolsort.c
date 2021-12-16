@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 20:46:02 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/15 20:21:27 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/16 10:20:31 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	smolsort_2(t_engine *e, t_flag from)
 	int	n[2];
 
 	set_dequnpack(e, from, 2, n);
-	if (n[up] > n[mid])
+	if (n[UP] > n[MID])
 		oper(e, from, SWAP);
 }
 
@@ -26,15 +26,15 @@ static void	smolsort_3(t_engine *e, t_flag from)
 	int	n[3];
 
 	set_dequnpack(e, from, 3, n);
-	if (n[mid] < n[up] && n[up] < n[down])
+	if (n[MID] < n[UP] && n[UP] < n[DOWN])
 		oper(e, from, SWAP);
-	else if (n[up] < n[down] && n[down] < n[mid])
+	else if (n[UP] < n[DOWN] && n[DOWN] < n[MID])
 		opers(e, from, 2, (t_inst []){RROT, SWAP});
-	else if (n[mid] < n[down] && n[down] < n[up])
+	else if (n[MID] < n[DOWN] && n[DOWN] < n[UP])
 		oper(e, from, ROT);
-	else if (n[down] < n[up] && n[up] < n[mid])
+	else if (n[DOWN] < n[UP] && n[UP] < n[MID])
 		oper(e, from, RROT);
-	else if (n[down] < n[mid] && n[mid] < n[up])
+	else if (n[DOWN] < n[MID] && n[MID] < n[UP])
 		opers(e, from, 2, (t_inst []){ROT, SWAP});
 }
 

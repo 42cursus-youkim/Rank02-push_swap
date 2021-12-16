@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 19:26:36 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/15 20:20:42 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/16 10:19:59 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,20 @@ bool	is_sorted(t_engine *engine, t_flag from)
 
 void	reset_sortcounter(t_sortres result[2])
 {
-	result[rots] = 0;
-	result[pushes] = 0;
+	result[ROTS] = 0;
+	result[PUSHES] = 0;
 }
 
 void	send_to_other(t_engine *e, t_flag from, t_sortres result[2])
 {
 	oper(e, from, PUSH);
-	result[pushes]++;
+	result[PUSHES]++;
 }
 
 void	roll_down(t_engine *e, t_flag from, t_sortres result[2])
 {
 	oper(e, from, ROT);
-	result[rots]++;
+	result[ROTS]++;
 }
 
 void	roll_back_up(t_engine *e, t_flag from, int rots)
