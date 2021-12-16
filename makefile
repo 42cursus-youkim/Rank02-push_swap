@@ -6,7 +6,7 @@
 #    By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/09 14:12:20 by youkim            #+#    #+#              #
-#    Updated: 2021/12/16 12:47:37 by youkim           ###   ########.fr        #
+#    Updated: 2021/12/16 15:39:54 by youkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 NAME     := push_swap
 
 CC       := gcc
-CFLAGS   := -Wall -Wextra -Werror
+CFLAGS   := -Wall -Wextra -Werror -std=c99
 RM       := rm -rf
 
 PRE      := src/
@@ -38,7 +38,7 @@ PKGS     := engine utils quicksort
 
 engineV    := push_swap engine checks #TODO: remove
 utilsV     := opers opers_util visualize
-quicksortV := smolsort quicksort number_utils #quicksort_utils #partition
+quicksortV := smolsort quicksort number_utils quicksort_utils #partition
 
 # ===== Macros =====
 define choose_modules

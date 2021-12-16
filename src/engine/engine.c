@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 15:31:58 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/15 17:00:25 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/16 15:28:07 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,14 @@ void	engine_print_opers(t_engine *engine)
 		ywrite(1, "\n");
 		curs = curs->lower;
 	}
+}
+
+const char	*get_op_name(t_op op)
+{
+	const static char	*op_name[11] = {
+		"sa", "sb", "ss", "pa", "pb", "ra", "rb", "rr", "rra", "rrb", "rrr"};
+
+	if (!(SA <= op && op <= RRR))
+		yerror("get_op_name", "tried to get nonexistant operation name");
+	return (op_name[op]);
 }

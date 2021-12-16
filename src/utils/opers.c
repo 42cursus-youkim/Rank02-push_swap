@@ -6,13 +6,13 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 15:31:28 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/15 10:38:30 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/16 15:27:02 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static t_res	oper_swap(t_engine *engine, t_flag from)
+t_res	oper_swap(t_engine *engine, t_flag from)
 {
 	t_deque	*deq;
 	t_dnode	*nodes[2];
@@ -27,7 +27,7 @@ static t_res	oper_swap(t_engine *engine, t_flag from)
 	return (OK);
 }
 
-static t_res	oper_push(t_engine *engine, t_flag from)
+t_res	oper_push(t_engine *engine, t_flag from)
 {
 	t_deque		*deqs[2];
 
@@ -38,7 +38,7 @@ static t_res	oper_push(t_engine *engine, t_flag from)
 	return (OK);
 }
 
-static t_res	oper_rotate(t_engine *engine, t_flag from)
+t_res	oper_rotate(t_engine *engine, t_flag from)
 {
 	t_deque		*deq;
 
@@ -49,7 +49,7 @@ static t_res	oper_rotate(t_engine *engine, t_flag from)
 	return (OK);
 }
 
-static t_res	oper_rev_rotate(t_engine *engine, t_flag from)
+t_res	oper_rev_rotate(t_engine *engine, t_flag from)
 {
 	t_deque		*deq;
 
@@ -58,18 +58,4 @@ static t_res	oper_rev_rotate(t_engine *engine, t_flag from)
 		return (ERR);
 	ydeque_push(deq, ydeque_pop_back(deq));
 	return (OK);
-}
-
-//	deque agnostic instructions for actual algorithm
-t_res	oper(t_engine *engine, t_flag from, t_inst inst)
-{
-	const t_op		ops[2][4] = {{SA, RA, RRA, PB}, {SB, RB, RRB, PA}};
-	const t_oper_f	oper_f[4] = {
-		oper_swap, oper_rotate, oper_rev_rotate, oper_push};
-
-	if (!((from == STK_A || from == STK_B) && (SWAP <= inst && inst <= PUSH)))
-		return (ERR);
-	usleep(10000);
-	ydeque_push_back(engine->hist, new_ydequenode(ops[from][inst]));
-	return (oper_f[inst](engine, from));
 }
