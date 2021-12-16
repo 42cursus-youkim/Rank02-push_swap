@@ -1,16 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quicksort_utils.c                                  :+:      :+:    :+:   */
+/*   util_quicksort.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 15:02:07 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/16 17:12:42 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/16 17:38:56 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	rewind_partition(t_engine *e, t_flag from, int size)
+{
+	while (--size >= 0)
+		oper(e, from, RROT);
+}
 
 void	move_node(t_engine *e, t_flag f, int pivot[2], int psize[4])
 {

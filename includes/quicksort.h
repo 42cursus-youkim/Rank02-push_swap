@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 10:02:58 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/16 17:12:32 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/16 17:46:03 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ typedef enum e_sortflag
 /*
 ** < quicksort.c > */
 
-void	partition_mid(t_engine *e, int size);
 void	partition_initial(t_engine *e, int psize[4]);
-void	partition_big(t_engine *e, int size);
+void	b_to_a(t_engine *e, int size);
+void	a_to_b(t_engine *e, int size);
 /*
 ** < smolsort.c > */
 
@@ -62,5 +62,6 @@ void	send_smol_up(t_engine *e, t_flag f, int psize[4]);
 /*
 ** < util_quicksort.c > */
 
+void	rewind_partition(t_engine *e, t_flag from, int size);
 void	move_node(t_engine *e, t_flag f, int pivot[2], int psize[4]);
 #endif
