@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 13:44:15 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/16 11:40:16 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/16 11:55:21 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ static void	check_input(const int argc, const char *argv[])
 
 void	solve(t_engine *engine)
 {
-	// initial_partitioning(engine);
 	int	pivot[2];
 
 	set_pivot(engine, STK_A, engine->a->size, pivot);
 	printf("pivots : %d, %d\n", pivot[LO], pivot[HI]);
+	partition_to_3(engine, engine->a->size, STK_A, pivot);
 }
 // // initial_partitioning(engine);
 // if (engine->a->size <= 3)

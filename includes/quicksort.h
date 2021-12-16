@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 10:02:58 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/16 11:40:16 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/16 12:45:37 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ typedef enum e_sortflag
 	UP = 0,
 	MID = 1,
 	DOWN = 2,
+	BIG = 0,
+	SMOL = 2,
 }	t_sortres;
 
 //@func
@@ -36,7 +38,10 @@ void	set_dequnpack(t_engine *e, t_flag from, int size, int arr[]);
 /*
 ** < quicksort.c > */
 
-void	initial_partitioning(t_engine *e);
+void	partition_to_3(t_engine *e, int size, t_flag from, int pivot[2]);
+/*
+** < quicksort_dprec.c > */
+
 void	quicksort(t_engine *e, t_flag from, int size);
 /*
 ** < quicksort_utils.c > */
