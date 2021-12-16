@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 10:02:58 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/16 13:07:40 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/16 13:16:35 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ bool	is_sorted(t_engine *engine, t_flag from);
 /*
 ** < quicksort.c > */
 
-void	partition_big(t_engine *e, int size, t_flag from);
+void	partition(t_engine *e, int size, t_flag from);
 /*
 ** < smolsort.c > */
 

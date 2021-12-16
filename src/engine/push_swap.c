@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 13:44:15 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/16 13:07:40 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/16 13:16:35 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	check_input(const int argc, const char *argv[])
 
 void	solve(t_engine *engine)
 {
-	partition_big(engine, engine->a->size, STK_A);
+	partition(engine, engine->a->size, STK_A);
 }
 // // initial_partitioning(engine);
 // if (engine->a->size <= 3)

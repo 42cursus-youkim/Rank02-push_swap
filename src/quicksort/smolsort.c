@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 20:46:02 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/16 10:20:31 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/16 13:25:07 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ void	smolsort(t_engine *e, t_flag from)
 
 	if (size <= 1 || is_sorted(e, from))
 		return ;
-	if (size > 3)
-		yerror("smolsort", "size > 3!!! why even call????");
+	// if (size > 3)
+	// 	yerror("smolsort", "size > 3!!! why even call????");
 	else if (size == 3)
 		smolsort_3(e, from);
 	else if (size == 2)
