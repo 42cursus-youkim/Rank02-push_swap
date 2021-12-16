@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 11:55:35 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/16 15:58:29 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/16 16:15:35 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,16 +57,22 @@ void	partition_b(t_engine *e, int size)
 	}
 }
 
-void	partition(t_engine *e, int size, t_flag from)
+void	partition(t_engine *e, t_flag from, int size)
 {
 	int	pivot[2];
 	int	psize[4] = {0, 0, 0, size};
 
+	// printf("from: %d, size: %d\n", from, size);
 	printf("size: %d, stack size: %d\n", size, get_deque(e, from)->size);
 	if (size <= 3)
 		return;
 	set_pivot(e, from, size, pivot);
 	move_node(e, from, pivot, psize);
+	printf("big: %d, deque size: %d\n", psize[BIG], get_deque(e, from)->size);
+	if (psize[BIG] > 3)
+		partition(e, from, psize[BIG]);
+	// else
+	// 	smolsort(e, from, 3);
 	// {
 	// 	// if (psize[BIG] > 3)
 	// 	// 	partition(e, psize[BIG], from);

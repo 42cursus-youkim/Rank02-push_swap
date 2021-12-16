@@ -41,14 +41,13 @@ bool	is_sorted(t_engine *engine, t_flag from);
 ** < quicksort.c > */
 
 void	partition_b(t_engine *e, int size);
-void	partition(t_engine *e, int size, t_flag from);
+void	partition(t_engine *e, t_flag from, int size);
 /*
 ** < quicksort_utils.c > */
 
-int		head_next_num(t_engine *engine, t_flag from);
-void	move_node(t_engine *e, t_flag from, int pivot[2], int psize[4]);
+void	move_node(t_engine *e, t_flag f, int pivot[2], int psize[4]);
 /*
 ** < smolsort.c > */
 
-void	smolsort(t_engine *e, t_flag from);
+void	smolsort(t_engine *e, t_flag from, int given_size);
 #endif
