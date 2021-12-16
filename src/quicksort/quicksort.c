@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 11:55:35 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/16 16:50:30 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/16 17:17:53 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,34 +60,38 @@ void	partition_initial(t_engine *e, int psize[4])
 
 	set_pivot(e, STK_A, e->a->size, pivot);
 	move_node(e, STK_A, pivot, psize);
+	partition_big(e, psize[BIG]);
 }
 
-void	partition_big(t_engine *e, t_flag from, int size)
+void	partition_big(t_engine *e, int size)
 {
+	static int limit = 2;
 	int	pivot[2];
 	int	psize[4] = {0, 0, 0, size};
 
 	if (size <= 3)
 		return;
-	set_pivot(e, from, size, pivot);
-	move_node(e, from, pivot, psize);
+	set_pivot(e, STK_A, size, pivot);
+	move_node(e, STK_A, pivot, psize);
+	limit--;
 	{
 		if (psize[BIG] > 3)
-			partition_big(e, from, psize[BIG]);
+			partition_big(e, psize[BIG]);
 		else
-			smolsort(e, from, 3);
-		partition_mid(e, psize[MID]);
+			smolsort(e, STK_A, 3);
+		if (limit > 0)
+			partition_mid(e, psize[MID]);
 	}
 	return;
 	{
 		for (int i = 0; i < psize[MID]; i++) // return mid
 		{
-			oper(e, !from, RROT);
-			oper(e, !from, PUSH);
+			oper(e, STK_B, RROT);
+			oper(e, STK_B, PUSH);
 		}
 		for (int i = 0; i < psize[SMOL]; i++) // return smol
 		{
-			oper(e, !from, PUSH);
+			oper(e, STK_B, PUSH);
 		}
 	}
 }
