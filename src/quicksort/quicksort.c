@@ -6,58 +6,63 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 11:55:35 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/16 16:27:49 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/16 16:50:30 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	partition_b(t_engine *e, int size)
+void	partition_mid(t_engine *e, int size)
 {
 	int	pivot[2];
 	int	psize[3] = {0, 0, 0};
-	const t_flag from = STK_B;
 
-	set_pivot(e, from, size, pivot);
 	if (size <= 3)
 		return ;
+	set_pivot(e, STK_B, size, pivot);
+	for (int i = 0; i < size; i++)
+		oper(e, STK_B, RROT);
 	while (--size >= 0)
 	{
-		if (head_num(e, from) >= pivot[HI])
+		if (is_big(e, STK_B, pivot))
 		{
-			oper(e, from, PUSH);
+			oper(e, STK_B, PUSH);
 			psize[BIG]++;
 		}
-		// else if (head_num(e, from) >= pivot[LO])
-		// {
-		// 	oper(e, from, PUSH);
-		// 	oper(e, !from, ROT);
-		// 	oper(e, from, ROT);
-		// 	psize[MID]++;
-		// 	psize[SMOL]++;
-		// }
-		else if (head_num(e, from) >= pivot[LO])
+		else if (is_mid(e, STK_B, pivot))
 		{
-			oper(e, from, PUSH);
-			oper(e, !from, ROT);
+			oper(e, STK_B, PUSH);
+			oper(e, STK_B, ROT);
 			psize[MID]++;
 		}
 		else
 		{
-			oper(e, from, ROT);
+			oper(e, STK_B, PUSH);
 			psize[SMOL]++;
 		}
 	}
-	for (int i = 0; i < psize[MID]; i++)
-		oper(e, !from, RROT);
-	for (int i = 0; i < psize[SMOL]; i++)
 	{
-		oper(e, from, RROT);
-		oper(e, from, PUSH);
+		for (int i = 0; i < psize[MID]; i++) // return mid
+		{
+			oper(e, STK_A, RROT);
+			oper(e, STK_A, PUSH);
+		}
+		for (int i = 0; i < psize[SMOL]; i++) // return smol
+		{
+			oper(e, STK_A, PUSH);
+		}
 	}
 }
 
-void	partition(t_engine *e, t_flag from, int size)
+void	partition_initial(t_engine *e, int psize[4])
+{
+	int	pivot[2];
+
+	set_pivot(e, STK_A, e->a->size, pivot);
+	move_node(e, STK_A, pivot, psize);
+}
+
+void	partition_big(t_engine *e, t_flag from, int size)
 {
 	int	pivot[2];
 	int	psize[4] = {0, 0, 0, size};
@@ -66,27 +71,25 @@ void	partition(t_engine *e, t_flag from, int size)
 		return;
 	set_pivot(e, from, size, pivot);
 	move_node(e, from, pivot, psize);
-	// if (psize[BIG] > 3)
-	// 	partition(e, from, psize[BIG]);
-	// else
-	// 	smolsort(e, from, 3);
-	// {
-	// 	// if (psize[BIG] > 3)
-	// 	// 	partition(e, psize[BIG], from);
-	// 	// else
-	// 	// 	smolsort(e, from);
-	// 	// if (psize[MID] > 3)
-	// 	// 	partition_b(e, psize[MID]);
-	// 	for (int i = 0; i < psize[MID]; i++)
-	// 	{
-	// 		oper(e, from, PUSH);
-	// 	}
-	// 	for (int i = 0; i < psize[SMOL]; i++)
-	// 	{
-	// 		oper(e, !from, RROT);
-	// 		oper(e, !from, PUSH);
-	// 	}
-	// }
+	{
+		if (psize[BIG] > 3)
+			partition_big(e, from, psize[BIG]);
+		else
+			smolsort(e, from, 3);
+		partition_mid(e, psize[MID]);
+	}
+	return;
+	{
+		for (int i = 0; i < psize[MID]; i++) // return mid
+		{
+			oper(e, !from, RROT);
+			oper(e, !from, PUSH);
+		}
+		for (int i = 0; i < psize[SMOL]; i++) // return smol
+		{
+			oper(e, !from, PUSH);
+		}
+	}
 }
 // if (psize[MID] > 3)
 // 	partition_b(e, psize[MID]);
