@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 13:44:15 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/16 16:49:37 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/17 14:31:58 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,10 @@ static void	check_input(const int argc, const char *argv[])
 
 void	solve(t_engine *engine)
 {
-	int	psize[4] = {0, 0, 0, engine->a->size};
+	a_to_b(engine, engine->a->size);
+	// int	psize[4] = {0, 0, 0, engine->a->size};
 
-	partition_initial(engine, psize);
+	// partition_initial(engine, psize);
 	// partition(engine, STK_A, engine->a->size);
 }
 // // initial_partitioning(engine);
