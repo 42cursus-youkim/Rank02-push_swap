@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 11:55:35 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/17 14:50:10 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/17 15:12:29 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,16 @@ void	b_to_a(t_engine *e, int size)
 	int	pivot[2];
 	int	psize[3] = {0, 0, 0};
 
-	if (size <= 3)
-		return ((void)smolsort(e, STK_B, size));
+	if (size < 3)
+	{
+		for (int i = 0; i < size; i++)
+		{
+			oper(e, STK_B, PUSH);
+		}
+		return ;
+	}
+		// return ;
+		// return ((void)smolsort(e, STK_B, size));
 	set_pivot(e, STK_B, size, pivot);
 	// rewind_partition(e, STK_B, size);
 	/*
@@ -75,7 +83,6 @@ void	b_to_a(t_engine *e, int size)
 		{
 			oper(e, STK_B, RROT);
 		}
-
 	}
 	/*
 		2 .
@@ -86,14 +93,14 @@ void	b_to_a(t_engine *e, int size)
 	*/
 	{
 		a_to_b(e, psize[MID]);
-		b_to_a(e, psize[MID]);
+		b_to_a(e, psize[SMOL]);
 	}
 }
 
 void	a_to_b(t_engine *e, int size)
 {
 	int	pivot[2];
-	int	psize[4] = {0, 0, 0, size};
+	int	psize[3] = {0, 0, 0};
 	// const t_flag from = STK_A;
 
 	if (size <= 3)
