@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 15:02:07 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/19 20:13:55 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/19 20:18:06 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,18 @@
 
 void	rewind_sector(t_engine *e, int psize[3], t_sortflag which[2])
 {
-	int	i;
+	int			i;
+	const int	both = ymin(psize[which[STK_A]], psize[which[STK_B]]);
+	const int	for_a = psize[which[STK_A]] - both;
+	const int	for_b = psize[which[STK_B]] - both;
 
 	i = -1;
-	while (++i < psize[which[STK_A]])
+	while (++i < both)
+		operb(e, RROT);
+	i = -1;
+	while (++i < for_a)
 		oper(e, STK_A, RROT);
 	i = -1;
-	while (++i < psize[which[STK_B]])
+	while (++i < for_b)
 		oper(e, STK_B, RROT);
 }
