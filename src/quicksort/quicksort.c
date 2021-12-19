@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 11:55:35 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/19 17:37:46 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/19 19:37:14 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,7 @@ void	b_to_a(t_engine *e, int size)
 		{
 			oper(e, STK_B, PUSH);
 		}
-		VIZUAL
 		smolsort(e, STK_A, size);
-		VIZUAL
 		return ;
 	}
 		// return ;
@@ -83,11 +81,9 @@ void	b_to_a(t_engine *e, int size)
 		A B
 	*/
 	// 3 먼저 정렬하기
-	VIZUAL
 	{
 		a_to_b(e, psize[BIG]);
 	}
-	VIZUAL
 	{
 		for (int i = 0; i < psize[MID]; i++) // rewind mid
 		{
@@ -105,12 +101,10 @@ void	b_to_a(t_engine *e, int size)
 		# #
 		A B
 	*/
-	VIZUAL
 	{
 		a_to_b(e, psize[MID]);
 		b_to_a(e, psize[SMOL]);
 	}
-	VIZUAL
 }
 
 void	a_to_b(t_engine *e, int size)
@@ -122,7 +116,6 @@ void	a_to_b(t_engine *e, int size)
 	if (size <= 2)
 	{
 		smolsort(e, STK_A, size);
-		VIZUAL
 		return ;
 	}
 	set_pivot(e, STK_A, size, pivot);
@@ -159,7 +152,6 @@ void	a_to_b(t_engine *e, int size)
 		3 2
 		A B
 	*/
-	VIZUAL
 	{
 		for (int i = 0; i < psize[BIG]; i++) // rewind big
 		{
@@ -177,13 +169,11 @@ void	a_to_b(t_engine *e, int size)
 		# #
 		A B
 	*/
-	VIZUAL
 	{
 		a_to_b(e, psize[BIG]); // [3]
 		b_to_a(e, psize[MID]); // [2]
 		b_to_a( e, psize[SMOL]);// [1]
 	}
-	VIZUAL
 }
 // if (psize[MID] > 3)
 // 	partition_b(e, psize[MID]);

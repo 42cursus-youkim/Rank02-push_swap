@@ -32,6 +32,5 @@ t_res	oper(t_engine *engine, t_flag from, t_inst inst);
 /*
 ** < visualize.c > */
 
-void	engine_showcase_oper(t_engine *engine);
 void	engine_visualize(t_engine *engine);
 #endif

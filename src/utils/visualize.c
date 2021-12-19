@@ -6,35 +6,11 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 17:33:26 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/19 16:53:20 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/19 19:48:52 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-// FIXME: remove later
-//	NOTE: remove the whole file on prod, uses PRINTF
-void	engine_showcase_oper(t_engine *engine)
-{
-	const t_inst	inst[4] = {SWAP, ROT, RROT, PUSH};
-	const char		*oper_name[4] = { "SWAP", "ROT", "RROT", "PUSH"};
-
-	del_ydeque(engine->a); del_ydeque(engine->b);
-	engine->a = new_ydeque(3, (int [3]){1, 2, 3});
-	engine->b = new_ydeque(3, (int [3]){11, 12, 13});
-	printf("%s<START>%s\n", REDHB, END);
-	// engine_visualize(engine);
-	for (t_flag which = STK_A; which <= STK_B; which++) {
-		for (int i = 0; i < 4; i++) {
-			printf("%sSTACK %s:%s ", HRED, which == STK_A ? "A" : "B", END);
-			printf("%s%s%s\n", UCYN, oper_name[i], END);
-			t_res res = oper(engine, which, inst[i]);
-			if (res == ERR)
-				printf("%s%s%s\n", HBLU, "ERR", END);
-			engine_visualize(engine);
-		}
-	}
-}
 
 //	NOTE: remove the whole file on prod, uses PRINTF
 void	engine_visualize(t_engine *engine)

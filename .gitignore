@@ -3,6 +3,7 @@ push_swap
 push_swap_debug
 
 # Checker
+push_swap_tester
 checker_Mac
 pyviz.py
 
