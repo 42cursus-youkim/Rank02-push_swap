@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 20:46:02 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/16 16:40:07 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/17 15:21:50 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,6 @@ void	smolsort(t_engine *e, t_flag from, int given_size)
 {
 	const int	size = ymin(given_size, get_deque(e, from)->size);
 
-	if (size <= 1 || is_sorted(e, from))
-		return ;
 	if (size == 3)
 		smolsort_3(e, from);
 	else if (size == 2)
