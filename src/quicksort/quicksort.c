@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 11:55:35 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/19 10:38:35 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/19 17:09:02 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,14 @@ void	b_to_a(t_engine *e, int size)
 	int	pivot[2];
 	int	psize[3] = {0, 0, 0};
 
+	printf("%sb_to_a with size: %d%s\n", HYEL, size, END);
+	/*
+		. 2
+		3 1
+		# #
+		# #
+		A B
+	*/
 	if (size <= 3)
 	{
 		for (int i = 0; i < size; i++)
@@ -33,6 +41,7 @@ void	b_to_a(t_engine *e, int size)
 			oper(e, STK_B, PUSH);
 		}
 		smolsort(e, STK_A, size);
+		VIZUAL
 		return ;
 	}
 		// return ;
@@ -72,9 +81,11 @@ void	b_to_a(t_engine *e, int size)
 		A B
 	*/
 	// 3 먼저 정렬하기
+	VIZUAL
 	{
 		a_to_b(e, psize[BIG]);
 	}
+	VIZUAL
 	{
 		for (int i = 0; i < psize[MID]; i++) // rewind mid
 		{
@@ -92,10 +103,12 @@ void	b_to_a(t_engine *e, int size)
 		# #
 		A B
 	*/
+	VIZUAL
 	{
 		a_to_b(e, psize[MID]);
 		b_to_a(e, psize[SMOL]);
 	}
+	VIZUAL
 }
 
 void	a_to_b(t_engine *e, int size)
@@ -103,9 +116,13 @@ void	a_to_b(t_engine *e, int size)
 	int	pivot[2];
 	int	psize[3] = {0, 0, 0};
 	// const t_flag from = STK_A;
+	printf("%sa_to_b with size: %d%s\n", HRED, size, END);
 	if (size <= 3)
-		return ((void)smolsort(e, STK_A, size));
-	printf("big\n");
+	{
+		smolsort(e, STK_A, size);
+		VIZUAL
+		return ;
+	}
 	set_pivot(e, STK_A, size, pivot);
 	/*
 		* .
@@ -113,7 +130,7 @@ void	a_to_b(t_engine *e, int size)
 		# #
 		A B
 	*/
-	while (--size >= 0)
+	 while (--size >= 0)
 	{
 		if (is_big(e, STK_A, pivot))
 		{
@@ -139,8 +156,9 @@ void	a_to_b(t_engine *e, int size)
 		3 2
 		A B
 	*/
+	VIZUAL
 	{
-		for (int i = 0; i < psize[BIG]; i++) // rewind mid
+		for (int i = 0; i < psize[BIG]; i++) // rewind big
 		{
 			oper(e, STK_A, RROT);
 		}
@@ -156,11 +174,13 @@ void	a_to_b(t_engine *e, int size)
 		# #
 		A B
 	*/
+	VIZUAL
 	{
 		a_to_b(e, psize[BIG]); // [3]
 		b_to_a(e, psize[MID]); // [2]
 		b_to_a(e, psize[SMOL]);// [1]
 	}
+	VIZUAL
 }
 // if (psize[MID] > 3)
 // 	partition_b(e, psize[MID]);

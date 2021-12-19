@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 09:51:43 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/19 10:41:22 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/19 17:03:20 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,11 @@ void	set_pivot(t_engine *e, t_flag from, int size, int pivot[2])
 	curs = get_deque(e, from)->head;
 	arr = ymalloc(size * sizeof(int));
 	set_dequnpack(e, from, size, arr);
-	for (int i = 0; i < size; i++)
-		printf("%d ", arr[i]);
-	printf("\n");
 	yqsort(size, arr);
 	pivot[LO] = arr[size / 3];
-	pivot[HI] = arr[size / 3 * 2];
-	for (int i = 0; i < size; i++)
-		printf("%d ", arr[i]);
-	printf("\npivot : lo [%d]%d hi [%d]%d\n", size / 3, pivot[LO], size / 3 * 2, pivot[HI]);
+	pivot[HI] = arr[(size * 2) / 3];
+	printf("pivot : lo [%dth]%d hi [%dth]%d\n",
+		(size / 3) + 1, pivot[LO], (size / 3 * 2 )+ 1, pivot[HI]);
 	free(arr);
 }
 

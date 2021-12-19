@@ -6,7 +6,7 @@
 #    By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/09 14:12:20 by youkim            #+#    #+#              #
-#    Updated: 2021/12/17 21:29:00 by youkim           ###   ########.fr        #
+#    Updated: 2021/12/19 16:35:54 by youkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ VSFLAGS  := --show-reachable=yes --error-limit=no --gen-suppressions=all \
 			# --log-file=./mlx.supp
 
 HGEN     := hgen #../hgen/src/run.py
-TPARAM   := $(shell ruby -e "puts (1..12).to_a.shuffle.join  (' ')")
+TPARAM   := 2 10 11 9 7 6 3 5 4 8 1 #$(shell ruby -e "puts (1..11).to_a.shuffle.join  (' ')")
 #2 16 4 6 3 14 1 11 15 5 7 12 10 9 8 13
 TEST	 := ./$(NAME) $(TPARAM)
 # ===== Packages =====
@@ -100,11 +100,6 @@ test: docs all cls
 	@$(call log, Y, Running Test, \n\twith param $(R)$(TPARAM)$(E))
 	@$(TEST)
 	@$(call log, G, Ended Test)
-
-viz: docs all cls
-	@$(call log, Y, Running Visual Test, \n\twith param $(R)$(TPARAM)$(E))
-	@python3 ./pyviz.py $(TPARAM)
-	@$(call log, G, Ended Visual Test)
 
 leak: docs all cls
 	@$(call log, Y, Running Leak Test,...)

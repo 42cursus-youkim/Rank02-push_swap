@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 17:33:26 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/16 15:27:58 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/19 16:53:20 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,16 @@ void	engine_visualize(t_engine *engine)
 				if (i >= size - deq[j]->size) {
 					printf("%2d ", curs[j]->num);
 					curs[j] = curs[j]->lower;
-				} else printf(". ");
-			} else printf(". ");
+				} else printf(" . ");
+			} else printf(" . ");
 		}
 		printf("\n");
 	}
-	printf("%s(x%d)%s ", HYEL, deq[2]->size, END);
-	for (int i = 0; i < deq[2]->size; i++) {
-		printf("%s%s%s ", HYEL, get_op_name(curs[2]->num), END);
-		curs[2] = curs[2]->lower;
-	}
 	printf("\n");
+	// printf("%s(x%d)%s ", HYEL, deq[2]->size, END);
+	// for (int i = 0; i < deq[2]->size; i++) {
+	// 	printf("%s%s%s ", HYEL, get_op_name(curs[2]->num), END);
+	// 	curs[2] = curs[2]->lower;
+	// }
+	// printf("\n");
 }
