@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 17:08:35 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/19 17:28:22 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/19 19:55:57 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,23 @@ bool	is_mid_after_big(t_engine *e, t_flag f, int pivot[2])
 {
 	return (is_mid(e, f, pivot)
 		&& get_deque(e, f)->head->lower->num >= pivot[HI]);
+}
+
+bool	is_sorted(t_engine *engine, t_flag from)
+{
+	int				i;
+	t_dnode			*curs;
+	const t_deque	*deq = get_deque(engine, from);
+
+	if (deq->size <= 1)
+		return (true);
+	i = 0;
+	curs = deq->head->lower;
+	while (++i < engine->a->size)
+	{
+		if (curs->num < curs->upper->num)
+			return (false);
+		curs = curs->lower;
+	}
+	return (true);
 }

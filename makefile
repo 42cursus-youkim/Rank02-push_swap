@@ -6,7 +6,7 @@
 #    By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/09 14:12:20 by youkim            #+#    #+#              #
-#    Updated: 2021/12/19 16:35:54 by youkim           ###   ########.fr        #
+#    Updated: 2021/12/19 19:54:49 by youkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,17 +29,17 @@ VFLAGS   := --leak-check=full --show-leak-kinds=all \
 VSFLAGS  := --show-reachable=yes --error-limit=no --gen-suppressions=all \
 			# --log-file=./mlx.supp
 
-HGEN     := hgen #../hgen/src/run.py
-TPARAM   := 2 10 11 9 7 6 3 5 4 8 1 #$(shell ruby -e "puts (1..11).to_a.shuffle.join  (' ')")
-#2 16 4 6 3 14 1 11 15 5 7 12 10 9 8 13
+HGEN     := hgen
+TPARAM   := $(shell ruby -e "puts (1..11).to_a.shuffle.join  (' ')")
+
 TEST	 := ./$(NAME) $(TPARAM)
 # ===== Packages =====
 PKGS     := engine utils quicksort
 
-engineV    := push_swap engine checks #TODO: remove
+engineV    := push_swap engine checks
 utilsV     := opers opers_util visualize
 quicksortV := smolsort quicksort \
-	util_compares util_numbers util_opers util_quicksort
+	util_compares util_numbers util_quicksort
 
 # ===== Macros =====
 define choose_modules

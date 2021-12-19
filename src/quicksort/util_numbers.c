@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 09:51:43 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/19 17:32:29 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/19 19:56:27 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,18 @@ void	set_pivot(t_engine *e, t_flag from, int size, int pivot[2])
 	yqsort(size, arr);
 	pivot[LO] = arr[size / 3];
 	pivot[HI] = arr[(size * 2) / 3];
-	yassert(pivot[LO] < pivot[HI], "pivot[LO] >= pivot[HI], what is this sorcery");
-	printf("pivot : lo [%dth]%d hi [%dth]%d\n",
-		(size / 3) + 1, pivot[LO], (size / 3 * 2 )+ 1, pivot[HI]);
+	yassert(pivot[LO] < pivot[HI],
+		"pivot[LO] >= pivot[HI], what is this sorcery");
 	free(arr);
+}
+
+void	init_array(int arr[], int size)
+{
+	int	i;
+
+	i = -1;
+	while (++i < size)
+		arr[i] = 0;
 }
 
 void	set_dequnpack(t_engine *e, t_flag from, int size, int arr[])
@@ -54,23 +62,4 @@ void	set_dequnpack(t_engine *e, t_flag from, int size, int arr[])
 		arr[i] = curs->num;
 		curs = curs->lower;
 	}
-}
-
-bool	is_sorted(t_engine *engine, t_flag from)
-{
-	int				i;
-	t_dnode			*curs;
-	const t_deque	*deq = get_deque(engine, from);
-
-	if (deq->size <= 1)
-		return (true);
-	i = 0;
-	curs = deq->head->lower;
-	while (++i < engine->a->size)
-	{
-		if (curs->num < curs->upper->num)
-			return (false);
-		curs = curs->lower;
-	}
-	return (true);
 }
