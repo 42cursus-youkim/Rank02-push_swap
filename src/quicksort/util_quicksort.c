@@ -6,33 +6,64 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 15:02:07 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/19 20:18:06 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/19 20:24:58 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// void	move_node(t_engine *e, t_flag f, int pivot[2], int psize[4])
-// {
-// 	while (--psize[COUNTER] >= 0)
-// 	{
-// 		if (psize[COUNTER] > 0 && is_mid_after_big(e, f, pivot))
-// 			send_mid_big(e, f, psize);
-// 		else if (is_big(e, f, pivot))
-// 			send_big_down(e, f, psize);
-// 		else if (is_mid(e, f, pivot))
-// 			send_mid_down(e, f, psize);
-// 		else
-// 			send_smol_up(e, f, psize);
-// 	}
-// }
+void	move_node_b_to_a(t_engine *e, int pivot[2], int sectors[4])
+{
+	while (--sectors[COUNT] >= 0)
+	{
+		if (is_big(e, STK_B, pivot))
+		{
+			oper(e, STK_B, PUSH);
+			sectors[BIG]++;
+		}
+		else if (is_mid(e, STK_B, pivot))
+		{
+			oper(e, STK_B, PUSH);
+			oper(e, STK_A, ROT);
+			sectors[MID]++;
+		}
+		else
+		{
+			oper(e, STK_B, ROT);
+			sectors[SMOL]++;
+		}
+	}
+}
 
-void	rewind_sector(t_engine *e, int psize[3], t_sortflag which[2])
+void	move_node_a_to_b(t_engine *e, int pivot[2], int sectors[4])
+{
+	while (--sectors[COUNT] >= 0)
+	{
+		if (is_big(e, STK_A, pivot))
+		{
+			oper(e, STK_A, ROT);
+			sectors[BIG]++;
+		}
+		else if (is_mid(e, STK_A, pivot))
+		{
+			oper(e, STK_A, PUSH);
+			oper(e, STK_B, ROT);
+			sectors[MID]++;
+		}
+		else
+		{
+			oper(e, STK_A, PUSH);
+			sectors[SMOL]++;
+		}
+	}
+}
+
+void	rewind_sector(t_engine *e, int sectors[3], t_sortflag which[2])
 {
 	int			i;
-	const int	both = ymin(psize[which[STK_A]], psize[which[STK_B]]);
-	const int	for_a = psize[which[STK_A]] - both;
-	const int	for_b = psize[which[STK_B]] - both;
+	const int	both = ymin(sectors[which[STK_A]], sectors[which[STK_B]]);
+	const int	for_a = sectors[which[STK_A]] - both;
+	const int	for_b = sectors[which[STK_B]] - both;
 
 	i = -1;
 	while (++i < both)

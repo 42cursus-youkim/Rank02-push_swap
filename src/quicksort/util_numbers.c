@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 09:51:43 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/19 19:56:27 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/19 20:22:47 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,14 @@ void	set_pivot(t_engine *e, t_flag from, int size, int pivot[2])
 	free(arr);
 }
 
-void	init_array(int arr[], int size)
+void	set_sectors(int sectors[4], int size)
 {
 	int	i;
 
 	i = -1;
-	while (++i < size)
-		arr[i] = 0;
+	while (++i < 3)
+		sectors[i] = 0;
+	sectors[COUNT] = size;
 }
 
 void	set_dequnpack(t_engine *e, t_flag from, int size, int arr[])
