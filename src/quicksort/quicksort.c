@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 11:55:35 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/17 15:12:29 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/19 10:38:35 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,13 @@ void	b_to_a(t_engine *e, int size)
 	int	pivot[2];
 	int	psize[3] = {0, 0, 0};
 
-	if (size < 3)
+	if (size <= 3)
 	{
 		for (int i = 0; i < size; i++)
 		{
 			oper(e, STK_B, PUSH);
 		}
+		smolsort(e, STK_A, size);
 		return ;
 	}
 		// return ;
@@ -102,7 +103,6 @@ void	a_to_b(t_engine *e, int size)
 	int	pivot[2];
 	int	psize[3] = {0, 0, 0};
 	// const t_flag from = STK_A;
-
 	if (size <= 3)
 		return ((void)smolsort(e, STK_A, size));
 	printf("big\n");
@@ -140,11 +140,11 @@ void	a_to_b(t_engine *e, int size)
 		A B
 	*/
 	{
-		for (int i = 0; i < psize[BIG]; i++) // return mid
+		for (int i = 0; i < psize[BIG]; i++) // rewind mid
 		{
 			oper(e, STK_A, RROT);
 		}
-		for (int i = 0; i < psize[MID]; i++) // return smol
+		for (int i = 0; i < psize[MID]; i++) // rewind smol
 		{
 			oper(e, STK_B, RROT);
 		}

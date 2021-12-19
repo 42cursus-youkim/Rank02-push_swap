@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 13:44:15 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/17 14:31:58 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/17 20:17:14 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@ static void	check_input(const int argc, const char *argv[])
 
 void	solve(t_engine *engine)
 {
+	const int	initial_size = engine->a->size;
+	if (initial_size <= 3)
+		return (void)smolsort(engine, STK_A, initial_size);
 	a_to_b(engine, engine->a->size);
 	// int	psize[4] = {0, 0, 0, engine->a->size};
 

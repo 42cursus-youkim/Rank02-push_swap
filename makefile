@@ -6,7 +6,7 @@
 #    By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/09 14:12:20 by youkim            #+#    #+#              #
-#    Updated: 2021/12/16 17:30:25 by youkim           ###   ########.fr        #
+#    Updated: 2021/12/17 21:29:00 by youkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 NAME     := push_swap
 
 CC       := gcc
-CFLAGS   := -Wall -Wextra -Werror -std=c99
+CFLAGS   := -Wall -Wextra -Werror
 RM       := rm -rf
 
 PRE      := src/
@@ -30,7 +30,7 @@ VSFLAGS  := --show-reachable=yes --error-limit=no --gen-suppressions=all \
 			# --log-file=./mlx.supp
 
 HGEN     := hgen #../hgen/src/run.py
-TPARAM   := $(shell ruby -e "puts (1..60).to_a.shuffle.join(' ')")
+TPARAM   := $(shell ruby -e "puts (1..12).to_a.shuffle.join  (' ')")
 #2 16 4 6 3 14 1 11 15 5 7 12 10 9 8 13
 TEST	 := ./$(NAME) $(TPARAM)
 # ===== Packages =====
