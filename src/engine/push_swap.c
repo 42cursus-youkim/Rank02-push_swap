@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 13:44:15 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/19 16:34:55 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/19 17:38:18 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	main(const int argc, const char *argv[])
 	// oper(&engine, STK_A, PUSH);
 	// engine_visualize(&engine);
 	yassert(is_sorted(&engine, STK_A) && engine.b->size == 0, "not sorted!");
-	// engine_print_opers(&engine);
+	engine_print_opers(&engine);
 	del_engine(&engine);
 	return (0);
 }
