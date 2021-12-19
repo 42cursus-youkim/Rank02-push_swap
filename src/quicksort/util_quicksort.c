@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 15:02:07 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/19 20:24:58 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/19 20:37:24 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,15 @@ void	move_node_b_to_a(t_engine *e, int pivot[2], int sectors[4])
 {
 	while (--sectors[COUNT] >= 0)
 	{
-		if (is_big(e, STK_B, pivot))
+		if (sectors[COUNT] >= 2 && is_mid_then_smol(e, STK_B, pivot))
+		{
+			oper(e, STK_B, PUSH);
+			operb(e, ROT);
+			sectors[MID]++;
+			sectors[SMOL]++;
+			sectors[COUNT]--;
+		}
+		else if (is_big(e, STK_B, pivot))
 		{
 			oper(e, STK_B, PUSH);
 			sectors[BIG]++;
@@ -39,7 +47,15 @@ void	move_node_a_to_b(t_engine *e, int pivot[2], int sectors[4])
 {
 	while (--sectors[COUNT] >= 0)
 	{
-		if (is_big(e, STK_A, pivot))
+		if (sectors[COUNT] >= 2 && is_mid_then_big(e, STK_A, pivot))
+		{
+			oper(e, STK_A, PUSH);
+			operb(e, ROT);
+			sectors[BIG]++;
+			sectors[MID]++;
+			sectors[COUNT]--;
+		}
+		else if (is_big(e, STK_A, pivot))
 		{
 			oper(e, STK_A, ROT);
 			sectors[BIG]++;
@@ -58,6 +74,7 @@ void	move_node_a_to_b(t_engine *e, int pivot[2], int sectors[4])
 	}
 }
 
+//	efficiently rewind both sectors
 void	rewind_sector(t_engine *e, int sectors[3], t_sortflag which[2])
 {
 	int			i;

@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 15:55:58 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/15 19:26:03 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/19 20:36:37 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,24 @@ t_deque	*get_input(const int argc, const char *argv[])
 		node = new_ydequenode(n);
 		ydeque_push(deque, node);
 	}
-	// ydeque_show(deque);
 	return (deque);
+}
+
+bool	is_sorted(t_engine *engine, t_flag from)
+{
+	int				i;
+	t_dnode			*curs;
+	const t_deque	*deq = get_deque(engine, from);
+
+	if (deq->size <= 1)
+		return (true);
+	i = 0;
+	curs = deq->head->lower;
+	while (++i < engine->a->size)
+	{
+		if (curs->num < curs->upper->num)
+			return (false);
+		curs = curs->lower;
+	}
+	return (true);
 }

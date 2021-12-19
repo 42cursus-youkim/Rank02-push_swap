@@ -21,6 +21,7 @@
 
 void		check_duplicate(const int argc, const char *argv[]);
 t_deque		*get_input(const int argc, const char *argv[]);
+bool		is_sorted(t_engine *engine, t_flag from);
 /*
 ** < engine.c > */
 
