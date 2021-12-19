@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 13:44:15 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/19 20:00:17 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/19 20:01:21 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,31 +26,15 @@ void	solve(t_engine *engine)
 	if (size <= 3)
 		return ((void)smolsort(engine, STK_A, size));
 	partition_initial(engine);
-	// int	psize[4] = {0, 0, 0, engine->a->size};
-
-	// partition_initial(engine, psize);
-	// partition(engine, STK_A, engine->a->size);
 }
-// // initial_partitioning(engine);
-// if (engine->a->size <= 3)
-// 	return (smolsort(engine, STK_A));
-// quicksort(engine, STK_A, engine->a->size);
-// // partition(engine, STK_B, engine->b->size);
 
 int	main(const int argc, const char *argv[])
 {
 	t_engine	engine;
 
 	check_input(argc, argv);
-	// init_engine(&engine, new_ydeque(3, (int []){1, 2, 3}));
 	init_engine(&engine, get_input(argc, argv));
-	// printf("sorted: %d\n", is_sorted(&engine, STK_A));
-	// engine_showcase_oper(&engine);
-	// engine_visualize(&engine);
 	solve(&engine);
-	// smolsort(&engine, STK_A);
-	// oper(&engine, STK_A, PUSH);
-	// engine_visualize(&engine);
 	yassert(is_sorted(&engine, STK_A) && engine.b->size == 0, "not sorted!");
 	engine_print_opers(&engine);
 	del_engine(&engine);

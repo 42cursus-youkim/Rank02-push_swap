@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 17:33:26 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/19 19:48:52 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/19 20:04:32 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,4 @@ void	engine_visualize(t_engine *engine)
 		printf("\n");
 	}
 	printf("\n");
-	// printf("%s(x%d)%s ", HYEL, deq[2]->size, END);
-	// for (int i = 0; i < deq[2]->size; i++) {
-	// 	printf("%s%s%s ", HYEL, get_op_name(curs[2]->num), END);
-	// 	curs[2] = curs[2]->lower;
-	// }
-	// printf("\n");
 }

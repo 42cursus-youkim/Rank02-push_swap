@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 10:02:58 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/19 19:57:33 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/19 20:08:19 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,18 @@ typedef enum e_sortflag
 	BIG = 0,
 	SMOL = 2,
 	COUNTER = 3,
-}	t_sortres;
+}	t_sortflag;
 
 //@func
 /*
-** < quicksort.c > */
+** < a_to_b.c > */
 
 void	partition_initial(t_engine *e);
-void	b_to_a(t_engine *e, int size);
 void	a_to_b(t_engine *e, int size);
+/*
+** < b_to_a.c > */
+
+void	b_to_a(t_engine *e, int size);
 /*
 ** < smolsort.c > */
 
@@ -54,4 +57,8 @@ int		tail_num(t_engine *engine, t_flag from);
 void	set_pivot(t_engine *e, t_flag from, int size, int pivot[2]);
 void	init_array(int arr[], int size);
 void	set_dequnpack(t_engine *e, t_flag from, int size, int arr[]);
+/*
+** < util_quicksort.c > */
+
+void	rewind_sector(t_engine *e, int psize[3], t_sortflag which[2]);
 #endif

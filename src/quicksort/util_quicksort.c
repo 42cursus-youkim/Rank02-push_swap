@@ -6,17 +6,11 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 15:02:07 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/19 19:57:49 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/19 20:13:55 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-// void	rewind(t_engine *e, t_flag from, int size)
-// {
-// 	while (--size >= 0)
-// 		oper(e, from, RROT);
-// }
 
 // void	move_node(t_engine *e, t_flag f, int pivot[2], int psize[4])
 // {
@@ -32,3 +26,15 @@
 // 			send_smol_up(e, f, psize);
 // 	}
 // }
+
+void	rewind_sector(t_engine *e, int psize[3], t_sortflag which[2])
+{
+	int	i;
+
+	i = -1;
+	while (++i < psize[which[STK_A]])
+		oper(e, STK_A, RROT);
+	i = -1;
+	while (++i < psize[which[STK_B]])
+		oper(e, STK_B, RROT);
+}
