@@ -47,8 +47,11 @@ void	smolsort(t_engine *e, t_flag from, int given_size);
 bool	is_big(t_engine *e, t_flag f, int pivot[2]);
 bool	is_mid(t_engine *e, t_flag f, int pivot[2]);
 bool	is_smol(t_engine *e, t_flag f, int pivot[2]);
-bool	is_mid_then_big(t_engine *e, t_flag f, int pivot[2]);
-bool	is_mid_then_smol(t_engine *e, t_flag f, int pivot[2]);
+/*
+** < util_compares_optimized.c > */
+
+bool	is_mid_then_big(t_engine *e, t_flag f, int pivot[2], int sectors[4]);
+bool	is_mid_then_smol(t_engine *e, t_flag f, int pivot[2], int sectors[4]);
 /*
 ** < util_numbers.c > */
 
@@ -62,5 +65,6 @@ void	set_dequnpack(t_engine *e, t_flag from, int size, int arr[]);
 
 void	move_node_b_to_a(t_engine *e, int pivot[2], int sectors[4]);
 void	move_node_a_to_b(t_engine *e, int pivot[2], int sectors[4]);
+void	move_node_initial(t_engine *e, int pivot[2], int sectors[4]);
 void	rewind_sector(t_engine *e, int sectors[3], t_sortflag which[2]);
 #endif
