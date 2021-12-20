@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 13:44:15 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/20 16:48:59 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/20 17:19:40 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,22 @@
 
 static void	add_values(t_deque *deq, char *strs[])
 {
-	int		i;
+	t_vec	vec;
 	int		n;
 
-	i = -1;
-	while (strs[++i])
+	vec_set(&vec, (t_vec){-1, -1});
+	while (strs[++vec.x])
 	{
-		yassert(yatoi(strs[i], &n) == OK, "add_values", "invalid input!");
+		vec.y = -1;
+		while (++vec.y < ystrlen(strs[vec.x]))
+			yassert(
+				is_char(strs[vec.x][vec.y], DIGIT)
+				|| ystrchri("-+ ", strs[vec.x][vec.y]) >= 0,
+				"add_values", "invalid char");
+		printf("%s\n", strs[vec.x]);
+		yassert(is_int_overflow(strs[vec.x]) == false,
+			"add_values", "int overflow!");
+		yassert(yatoi(strs[vec.x], &n) == OK, "add_values", "invalid input!");
 		ydeque_push_back(deq, new_ydequenode(n));
 	}
 	del_ystrarr(strs);
