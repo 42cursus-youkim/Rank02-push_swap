@@ -30,7 +30,24 @@ t_res	opers(t_engine *engine, t_flag from, int size, t_inst insts[]);
 t_res	operb(t_engine *engine, t_inst inst);
 t_res	oper(t_engine *engine, t_flag from, t_inst inst);
 /*
-** < visualize.c > */
+** < util_compares.c > */
 
-void	engine_visualize(t_engine *engine);
+bool	is_big(t_engine *e, t_flag f, int pivot[2]);
+bool	is_mid(t_engine *e, t_flag f, int pivot[2]);
+bool	is_smol(t_engine *e, t_flag f, int pivot[2]);
+/*
+** < util_numbers.c > */
+
+int		head_num(t_engine *engine, t_flag from);
+int		tail_num(t_engine *engine, t_flag from);
+void	set_pivot(t_engine *e, t_flag from, int size, int pivot[2]);
+void	set_sectors(int sectors[4], int size);
+void	set_dequnpack(t_engine *e, t_flag from, int size, int arr[]);
+/*
+** < util_quicksort.c > */
+
+void	move_node_b_to_a(t_engine *e, int pivot[2], int sectors[4]);
+void	move_node_a_to_b(t_engine *e, int pivot[2], int sectors[4]);
+void	move_node_initial(t_engine *e, int pivot[2], int sectors[4]);
+void	rewind_sector(t_engine *e, int sectors[3], t_sortflag which[2]);
 #endif

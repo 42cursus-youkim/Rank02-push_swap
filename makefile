@@ -6,7 +6,7 @@
 #    By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/09 14:12:20 by youkim            #+#    #+#              #
-#    Updated: 2021/12/20 09:48:40 by youkim           ###   ########.fr        #
+#    Updated: 2021/12/20 18:23:13 by youkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,8 +37,8 @@ TEST	 := ./$(NAME) $(TPARAM)
 PKGS     := engine utils quicksort
 
 engineV    := push_swap engine checks
-utilsV     := opers opers_util visualize
-quicksortV := quicksort smolsort util_compares util_numbers util_quicksort
+quicksortV := quicksort smolsort
+utilsV     := opers opers_util util_compares util_numbers util_quicksort
 
 # ===== Macros =====
 define choose_modules
