@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 15:55:58 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/19 20:36:37 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/20 09:00:49 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,14 @@ t_deque	*get_input(const int argc, const char *argv[])
 	return (deque);
 }
 
-bool	is_sorted(t_engine *engine, t_flag from)
+bool	is_sorted(t_engine *engine)
 {
 	int				i;
 	t_dnode			*curs;
-	const t_deque	*deq = get_deque(engine, from);
+	const t_deque	*deq = engine->a;
 
+	if (engine->b->size != 0)
+		return (false);
 	if (deq->size <= 1)
 		return (true);
 	i = 0;

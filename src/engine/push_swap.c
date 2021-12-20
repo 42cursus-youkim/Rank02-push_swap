@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 13:44:15 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/19 20:01:21 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/20 09:01:23 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	solve(t_engine *engine)
 
 	if (size <= 3)
 		return ((void)smolsort(engine, STK_A, size));
+	else if (is_sorted(engine))
+		return ;
 	partition_initial(engine);
 }
 
@@ -35,7 +37,7 @@ int	main(const int argc, const char *argv[])
 	check_input(argc, argv);
 	init_engine(&engine, get_input(argc, argv));
 	solve(&engine);
-	yassert(is_sorted(&engine, STK_A) && engine.b->size == 0, "not sorted!");
+	yassert(is_sorted(&engine), "not sorted!");
 	engine_print_opers(&engine);
 	del_engine(&engine);
 	return (0);
