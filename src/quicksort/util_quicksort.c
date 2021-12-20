@@ -6,11 +6,18 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 15:02:07 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/20 08:53:37 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/20 09:09:33 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static void	rotate_both(t_engine *e, int sectors[4], t_sortflag which)
+{
+	sectors[which]++;
+	sectors[COUNT]--;
+	operb(e, ROT);
+}
 
 void	move_node_b_to_a(t_engine *e, int pivot[2], int sectors[4])
 {
@@ -26,11 +33,7 @@ void	move_node_b_to_a(t_engine *e, int pivot[2], int sectors[4])
 			sectors[MID]++;
 			oper(e, STK_B, PUSH);
 			if (sectors[COUNT] > 0 && is_smol(e, STK_B, pivot))
-			{
-				sectors[SMOL]++;
-				sectors[COUNT]--;
-				operb(e, ROT);
-			}
+				rotate_both(e, sectors, SMOL);
 			else
 				oper(e, STK_A, ROT);
 		}
@@ -55,11 +58,7 @@ void	move_node_a_to_b(t_engine *e, int pivot[2], int sectors[4])
 		{
 			oper(e, STK_A, PUSH);
 			if (sectors[COUNT] > 0 && is_big(e, STK_A, pivot))
-			{
-				operb(e, ROT);
-				sectors[BIG]++;
-				sectors[COUNT]--;
-			}
+				rotate_both(e, sectors, BIG);
 			else
 				oper(e, STK_B, ROT);
 			sectors[MID]++;
@@ -90,11 +89,7 @@ void	move_node_initial(t_engine *e, int pivot[2], int sectors[4])
 		{
 			oper(e, STK_A, PUSH);
 			if (sectors[COUNT] > 0 && is_big(e, STK_A, pivot))
-			{
-				operb(e, ROT);
-				sectors[BIG]++;
-				sectors[COUNT]--;
-			}
+				rotate_both(e, sectors, BIG);
 			else
 				oper(e, STK_B, ROT);
 			sectors[SMOL]++;

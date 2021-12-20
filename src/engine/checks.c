@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 15:55:58 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/20 09:00:49 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/20 09:05:44 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ t_deque	*get_input(const int argc, const char *argv[])
 	return (deque);
 }
 
-bool	is_sorted(t_engine *engine)
+bool	is_sort_complete(t_engine *engine)
 {
 	int				i;
 	t_dnode			*curs;

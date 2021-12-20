@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 13:44:28 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/13 11:01:12 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/20 09:05:44 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 void		check_duplicate(const int argc, const char *argv[]);
 t_deque		*get_input(const int argc, const char *argv[]);
-bool		is_sorted(t_engine *engine);
+bool		is_sort_complete(t_engine *engine);
 /*
 ** < engine.c > */
 

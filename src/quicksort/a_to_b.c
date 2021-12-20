@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 11:55:35 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/19 20:23:55 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/20 09:41:54 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,33 +17,15 @@ void	partition_initial(t_engine *e)
 {
 	int	size;
 	int	pivot[2];
-	int	psize[3];
+	int	sectors[4];
 
 	size = e->a->size;
-	set_sectors(psize, 3);
+	set_sectors(sectors, size);
 	set_pivot(e, STK_A, size, pivot);
-	while (--size >= 0)
-	{
-		if (is_big(e, STK_A, pivot))
-		{
-			oper(e, STK_A, ROT);
-			psize[BIG]++;
-		}
-		else if (is_mid(e, STK_A, pivot))
-		{
-			oper(e, STK_A, PUSH);
-			psize[MID]++;
-		}
-		else
-		{
-			oper(e, STK_A, PUSH);
-			oper(e, STK_B, ROT);
-			psize[SMOL]++;
-		}
-	}
-	a_to_b(e, psize[BIG]);
-	b_to_a(e, psize[MID]);
-	b_to_a(e, psize[SMOL]);
+	move_node_initial(e, pivot, sectors);
+	a_to_b(e, sectors[BIG]);
+	b_to_a(e, sectors[MID]);
+	b_to_a(e, sectors[SMOL]);
 }
 
 void	a_to_b(t_engine *e, int size)

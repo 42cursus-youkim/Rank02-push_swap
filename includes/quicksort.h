@@ -48,11 +48,6 @@ bool	is_big(t_engine *e, t_flag f, int pivot[2]);
 bool	is_mid(t_engine *e, t_flag f, int pivot[2]);
 bool	is_smol(t_engine *e, t_flag f, int pivot[2]);
 /*
-** < util_compares_optimized.c > */
-
-bool	is_mid_then_big(t_engine *e, t_flag f, int pivot[2], int sectors[4]);
-bool	is_mid_then_smol(t_engine *e, t_flag f, int pivot[2], int sectors[4]);
-/*
 ** < util_numbers.c > */
 
 int		head_num(t_engine *engine, t_flag from);
