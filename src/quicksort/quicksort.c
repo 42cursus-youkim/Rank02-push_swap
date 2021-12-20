@@ -5,60 +5,70 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/12 21:04:00 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/14 20:34:38 by youkim           ###   ########.fr       */
+/*   Created: 2021/12/16 11:55:35 by youkim            #+#    #+#             */
+/*   Updated: 2021/12/20 09:53:04 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	reset_sortcounter(t_sortres result[2])
+static void	smolsort_b_to_a(t_engine *e, int size)
 {
-	result[rots] = 0;
-	result[pushes] = 0;
+	int	i;
+
+	i = -1;
+	while (++i < size)
+		oper(e, STK_B, PUSH);
+	smolsort(e, STK_A, size);
 }
 
-static void	send_to_other(t_engine *e, t_flag from, t_sortres result[2])
+//	assumes deque size is at least bigger than 3
+void	quicksort(t_engine *engine)
 {
-	oper(e, from, PUSH);
-	result[pushes]++;
-}
+	int			pivot[2];
+	int			sectors[4];
+	const int	size = engine->a->size;
 
-static void	roll_down(t_engine *e, t_flag from, t_sortres result[2])
-{
-	oper(e, from, ROT);
-	result[rots]++;
-}
-
-static void	roll_back_up(t_engine *e, t_flag from, int rots)
-{
-	while (--rots >= 0)
-		oper(e, from, RROT);
-}
-
-/*
-	result[2] holds the number of rotations, and number of pushes
-*/
-void	quicksort(t_engine *e, t_flag from, int size)
-{
-	int			pivot;
-	t_sortres	result[2];
-
-	engine_visualize(e);
-	if (size == 1 && from == STK_B)
-		return ((void)oper(e, from, PUSH));
-	if (size == 1 || size > get_deque(e, from)->size)
+	if (size <= 3)
+		return ((void)smolsort(engine, STK_A, size));
+	else if (is_sort_complete(engine))
 		return ;
-	pivot = tail_num(e, from);
-	reset_sortcounter(result);
-	while (--size >= 0)
-	{
-		if (head_num(e, from) <= pivot)
-			send_to_other(e, from, result);
-		else
-			roll_down(e, from, result);
-	}
-	roll_back_up(e, from, result[rots]);
-	quicksort(e, from, result[rots]);
-	quicksort(e, !from, result[pushes]);
+	set_sectors(sectors, size);
+	set_pivot(engine, STK_A, size, pivot);
+	move_node_initial(engine, pivot, sectors);
+	a_to_b(engine, sectors[BIG]);
+	b_to_a(engine, sectors[MID]);
+	b_to_a(engine, sectors[SMOL]);
+}
+
+void	a_to_b(t_engine *e, int size)
+{
+	int	pivot[2];
+	int	sectors[4];
+
+	if (size <= 2 || (size == 3 && e->a->size == 3))
+		return ((void)smolsort(e, STK_A, size));
+	set_sectors(sectors, size);
+	set_pivot(e, STK_A, size, pivot);
+	move_node_a_to_b(e, pivot, sectors);
+	rewind_sector(e, sectors, (t_sortflag [2]){BIG, MID});
+	a_to_b(e, sectors[BIG]);
+	b_to_a(e, sectors[MID]);
+	b_to_a(e, sectors[SMOL]);
+}
+
+void	b_to_a(t_engine *e, int size)
+{
+	int	pivot[2];
+	int	sectors[4];
+
+	if (size <= 2)
+		return ((void)smolsort_b_to_a(e, size));
+	set_sectors(sectors, size);
+	set_pivot(e, STK_B, size, pivot);
+	move_node_b_to_a(e, pivot, sectors);
+	a_to_b(e, sectors[BIG]);
+	rewind_sector(e, sectors, (t_sortflag [2]){MID, SMOL});
+	a_to_b(e, sectors[MID]);
+	b_to_a(e, sectors[SMOL]);
 }

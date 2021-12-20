@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
+#    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/09 14:12:20 by youkim            #+#    #+#              #
-#    Updated: 2021/12/14 20:36:31 by youkim           ###   ########.fr        #
+#    Updated: 2021/12/20 09:48:40 by youkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,22 +22,23 @@ INC      := -I includes/ -I libft/includes
 LIBFT    := libft/libft.a
 
 # ===== Test & Debugging =====
-DFLAGS	 := -g3 #-DCMAKE_EXE_LINKER_FLAGS="-fsanitize=address"
+DFLAGS	 := -g3 -DCMAKE_EXE_LINKER_FLAGS="-fsanitize=address"
 VFLAGS   := --leak-check=full --show-leak-kinds=all \
 			--track-origins=yes --show-reachable=no \
 			--suppressions=./libft/macos.supp
 VSFLAGS  := --show-reachable=yes --error-limit=no --gen-suppressions=all \
 			# --log-file=./mlx.supp
 
-HGEN     := hgen #../hgen/src/run.py
-TPARAM   := 1 2 3 4 5 #$(shell ruby -e "puts (1..8).to_a.shuffle.join(' ')")
+HGEN     := hgen
+TPARAM   := $(shell ruby -e "puts (1..11).to_a.shuffle.join  (' ')")
+
 TEST	 := ./$(NAME) $(TPARAM)
 # ===== Packages =====
 PKGS     := engine utils quicksort
 
-engineV    := push_swap engine checks #TODO: remove
+engineV    := push_swap engine checks
 utilsV     := opers opers_util visualize
-quicksortV := smolsort quicksort number_utils #quicksort_utils #partition
+quicksortV := quicksort smolsort util_compares util_numbers util_quicksort
 
 # ===== Macros =====
 define choose_modules
@@ -63,9 +64,9 @@ OBJ      = $(SRC:%.c=%.o)
 	@echo "  $(WU)$(<F)$(R) -> $(E)$(@F)"
 	@$(CC) $(CFLAGS) $(DFLAGS) $(INC) -c -o $@ $<
 
-$(NAME): $(OBJ)
+$(NAME): $(OBJ) $(LIBFT)
 	@$(call build_library)
-	@$(CC) $(CFLAGS) $(INC) $(LIBFT) -o $@ $^
+	@$(CC) $(CFLAGS) $(INC) -o $@ $^
 	@$(call log, V, Linked Object files,\
 		\n\twith flag $(R)$(DFLAGS)$(E)$(CFLAGS))
 	@echo "$(G)<<$(NAME)>>$(E)"

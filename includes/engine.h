@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 13:44:28 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/13 11:01:12 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/20 09:05:44 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,15 @@
 /*
 ** < checks.c > */
 
-bool	is_sorted(t_engine *engine);
-void	check_duplicate(const int argc, const char *argv[]);
+void		check_duplicate(const int argc, const char *argv[]);
+void		check_numbers_unique(t_deque *deq);
+bool		is_sort_complete(t_engine *engine);
+t_deque		*check_and_get_input(const int argc, const char *argv[]);
 /*
 ** < engine.c > */
 
-t_deque	*get_input(const int argc, const char *argv[]);
-void	init_engine(t_engine *engine, int size, int nums[]);
-void	del_engine(t_engine *engine);
-/*
-** < push_swap.c > */
-
-void	solve(t_engine *engine);
+void		init_engine(t_engine *engine, t_deque *input);
+void		del_engine(t_engine *engine);
+void		engine_print_opers(t_engine *engine);
+const char	*get_op_name(t_op op);
 #endif

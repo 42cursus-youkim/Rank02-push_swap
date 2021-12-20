@@ -17,18 +17,20 @@
 /*
 ** < opers.c > */
 
-t_res		oper(t_engine *engine, t_flag from, t_inst inst);
+t_res	oper_swap(t_engine *engine, t_flag from);
+t_res	oper_push(t_engine *engine, t_flag from);
+t_res	oper_rotate(t_engine *engine, t_flag from);
+t_res	oper_rev_rotate(t_engine *engine, t_flag from);
 /*
 ** < opers_util.c > */
 
-t_deque		*get_deque(t_engine *engine, t_flag from);
-void		set_deques_from_to(t_engine *engine, t_deque *deqs[2],
-				t_flag from);
-const char	*get_op_name(t_op op);
-t_res		opers(t_engine *engine, t_flag from, int size, t_inst insts[]);
+t_deque	*get_deque(t_engine *engine, t_flag from);
+void	set_deques_from_to(t_engine *e, t_deque *deqs[2], t_flag from);
+t_res	opers(t_engine *engine, t_flag from, int size, t_inst insts[]);
+t_res	operb(t_engine *engine, t_inst inst);
+t_res	oper(t_engine *engine, t_flag from, t_inst inst);
 /*
 ** < visualize.c > */
 
-void		engine_showcase_oper(t_engine *engine);
-void		engine_visualize(t_engine *engine);
+void	engine_visualize(t_engine *engine);
 #endif

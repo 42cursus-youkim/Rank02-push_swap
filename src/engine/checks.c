@@ -6,21 +6,66 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 15:55:58 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/13 20:13:06 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/20 17:43:53 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-bool	is_sorted(t_engine *engine)
+void	check_duplicate(const int argc, const char *argv[])
 {
-	int		i;
-	t_dnode	*curs;
+	t_vec	vec;
 
-	if (engine->a->size == 0 || engine->b->size > 0)
+	vec.x = 0;
+	while (++vec.x < argc)
+	{
+		vec.y = vec.x;
+		while (++vec.y < argc)
+		{
+			if (ystrequ(argv[vec.x], argv[vec.y]))
+				yerror("check_duplicate", "duplicate strings!");
+		}
+	}
+}
+
+void	check_numbers_unique(t_deque *deq)
+{
+	t_vec		vec;
+	t_dnode		*curs;
+	int			*arr;
+	const int	size = deq->size;
+
+	vec.x = 0;
+	curs = deq->head;
+	arr = ymalloc(size * sizeof(int));
+	while (++vec.x < size)
+	{
+		arr[vec.x] = curs->num;
+		curs = curs->lower;
+	}
+	vec.x = 0;
+	while (++vec.x < size)
+	{
+		vec.y = vec.x;
+		while (++vec.y < size)
+			if (arr[vec.x] == arr[vec.y])
+				yerror("is_numbers_unique", "duplicate numbers!");
+	}
+	free(arr);
+}
+
+bool	is_sort_complete(t_engine *engine)
+{
+	int				i;
+	t_dnode			*curs;
+	const t_deque	*deq = engine->a;
+
+	if (engine->b->size != 0)
 		return (false);
+	if (deq->size <= 1)
+		return (true);
 	i = 0;
-	curs = engine->a->head->lower;
+	curs = deq->head->lower;
 	while (++i < engine->a->size)
 	{
 		if (curs->num < curs->upper->num)
@@ -30,19 +75,38 @@ bool	is_sorted(t_engine *engine)
 	return (true);
 }
 
-void	check_duplicate(const int argc, const char *argv[])
+static void	add_values(t_deque *deq, char *strs[])
 {
-	int	i;
-	int	j;
+	t_vec	vec;
+	int		n;
 
-	i = 0;
-	while (++i < argc)
+	vec_set(&vec, (t_vec){-1, -1});
+	while (strs[++vec.x])
 	{
-		j = i;
-		while (++j < argc)
-		{
-			if (ystrequ(argv[i], argv[j]))
-				yerror("check_duplicate", "duplicate values");
-		}
+		vec.y = -1;
+		while (++vec.y < ystrlen(strs[vec.x]))
+			yassert(
+				is_char(strs[vec.x][vec.y], DIGIT)
+				|| ystrchri("-+ ", strs[vec.x][vec.y]) >= 0,
+				"add_values", "invalid char");
+		yassert(is_int_overflow(strs[vec.x]) == false,
+			"add_values", "int overflow!");
+		yassert(yatoi(strs[vec.x], &n) == OK, "add_values", "invalid input!");
+		ydeque_push_back(deq, new_ydequenode(n));
 	}
+	del_ystrarr(strs);
+}
+
+t_deque	*check_and_get_input(const int argc, const char *argv[])
+{
+	int		i;
+	t_deque	*deq;
+
+	check_duplicate(argc, argv);
+	i = 0;
+	deq = new_ydeque(0, NULL);
+	while (++i < argc)
+		add_values(deq, new_ysplit(argv[i], ' '));
+	check_numbers_unique(deq);
+	return (deq);
 }

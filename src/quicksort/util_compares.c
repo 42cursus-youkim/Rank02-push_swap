@@ -1,27 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   util_compares.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/11 13:44:15 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/20 17:32:57 by youkim           ###   ########.fr       */
+/*   Created: 2021/12/16 17:08:35 by youkim            #+#    #+#             */
+/*   Updated: 2021/12/19 20:50:43 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(const int argc, const char *argv[])
+bool	is_big(t_engine *e, t_flag f, int pivot[2])
 {
-	t_deque		*input;
-	t_engine	engine;
+	const int	num = head_num(e, f);
 
-	input = check_and_get_input(argc, argv);
-	init_engine(&engine, input);
-	quicksort(&engine);
-	engine_print_opers(&engine);
-	yassert(is_sort_complete(&engine), "main", "not sorted!");
-	del_engine(&engine);
-	return (0);
+	return (pivot[HI] <= num);
+}
+
+bool	is_mid(t_engine *e, t_flag f, int pivot[2])
+{
+	const int	num = head_num(e, f);
+
+	return (pivot[LO] <= num && num < pivot[HI]);
+}
+
+bool	is_smol(t_engine *e, t_flag f, int pivot[2])
+{
+	const int	num = head_num(e, f);
+
+	return (num < pivot[LO]);
 }
