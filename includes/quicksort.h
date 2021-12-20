@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 10:02:58 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/19 20:30:03 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/20 18:26:51 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,12 @@
 
 typedef enum e_sortflag
 {
-	ROTS = 0,
-	PUSHES = 1,
 	LO = 0,
 	HI = 1,
 	UP = 0,
 	MID = 1,
-	DOWN = 2,
 	BIG = 0,
+	DOWN = 2,
 	SMOL = 2,
 	COUNT = 3,
 }	t_sortflag;
