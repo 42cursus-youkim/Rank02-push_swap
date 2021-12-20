@@ -29,13 +29,10 @@ typedef enum e_sortflag
 
 //@func
 /*
-** < a_to_b.c > */
+** < quicksort.c > */
 
-void	partition_initial(t_engine *e);
+void	quicksort(t_engine *engine);
 void	a_to_b(t_engine *e, int size);
-/*
-** < b_to_a.c > */
-
 void	b_to_a(t_engine *e, int size);
 /*
 ** < smolsort.c > */

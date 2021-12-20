@@ -29,8 +29,4 @@ void		init_engine(t_engine *engine, t_deque *input);
 void		del_engine(t_engine *engine);
 void		engine_print_opers(t_engine *engine);
 const char	*get_op_name(t_op op);
-/*
-** < push_swap.c > */
-
-void		solve(t_engine *engine);
 #endif
