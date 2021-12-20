@@ -21,6 +21,7 @@
 
 void		check_duplicate(const int argc, const char *argv[]);
 bool		is_sort_complete(t_engine *engine);
+t_deque		*check_and_get_input(const int argc, const char *argv[]);
 /*
 ** < engine.c > */
 

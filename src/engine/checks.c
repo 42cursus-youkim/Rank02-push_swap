@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 15:55:58 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/20 16:22:00 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/20 17:33:11 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,38 +14,19 @@
 
 void	check_duplicate(const int argc, const char *argv[])
 {
-	int	i;
-	int	j;
+	t_vec	vec;
 
-	i = 0;
-	while (++i < argc)
+	vec.x = 0;
+	while (++vec.x < argc)
 	{
-		j = i;
-		while (++j < argc)
+		vec.y = vec.x;
+		while (++vec.y < argc)
 		{
-			if (ystrequ(argv[i], argv[j]))
+			if (ystrequ(argv[vec.x], argv[vec.y]))
 				yerror("check_duplicate", "duplicate values");
 		}
 	}
 }
-
-// t_deque	*get_input(const int argc, const char *argv[])
-// {
-// 	int		i;
-// 	int		n;
-// 	t_dnode	*node;
-// 	t_deque	*deque;
-
-// 	i = argc;
-// 	deque = new_ydeque(0, NULL);
-// 	while (--i > 0)
-// 	{
-// 		yatoi(argv[i], &n);
-// 		node = new_ydequenode(n);
-// 		ydeque_push(deque, node);
-// 	}
-// 	return (deque);
-// }
 
 bool	is_sort_complete(t_engine *engine)
 {
@@ -66,4 +47,39 @@ bool	is_sort_complete(t_engine *engine)
 		curs = curs->lower;
 	}
 	return (true);
+}
+
+static void	add_values(t_deque *deq, char *strs[])
+{
+	t_vec	vec;
+	int		n;
+
+	vec_set(&vec, (t_vec){-1, -1});
+	while (strs[++vec.x])
+	{
+		vec.y = -1;
+		while (++vec.y < ystrlen(strs[vec.x]))
+			yassert(
+				is_char(strs[vec.x][vec.y], DIGIT)
+				|| ystrchri("-+ ", strs[vec.x][vec.y]) >= 0,
+				"add_values", "invalid char");
+		yassert(is_int_overflow(strs[vec.x]) == false,
+			"add_values", "int overflow!");
+		yassert(yatoi(strs[vec.x], &n) == OK, "add_values", "invalid input!");
+		ydeque_push_back(deq, new_ydequenode(n));
+	}
+	del_ystrarr(strs);
+}
+
+t_deque	*check_and_get_input(const int argc, const char *argv[])
+{
+	int		i;
+	t_deque	*deq;
+
+	check_duplicate(argc, argv);
+	i = 0;
+	deq = new_ydeque(0, NULL);
+	while (++i < argc)
+		add_values(deq, new_ysplit(argv[i], ' '));
+	return (deq);
 }
