@@ -20,7 +20,6 @@
 ** < checks.c > */
 
 void		check_duplicate(const int argc, const char *argv[]);
-t_deque		*get_input(const int argc, const char *argv[]);
 bool		is_sort_complete(t_engine *engine);
 /*
 ** < engine.c > */

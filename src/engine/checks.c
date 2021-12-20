@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 15:55:58 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/20 09:05:44 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/20 16:22:00 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,23 +29,23 @@ void	check_duplicate(const int argc, const char *argv[])
 	}
 }
 
-t_deque	*get_input(const int argc, const char *argv[])
-{
-	int		i;
-	int		n;
-	t_dnode	*node;
-	t_deque	*deque;
+// t_deque	*get_input(const int argc, const char *argv[])
+// {
+// 	int		i;
+// 	int		n;
+// 	t_dnode	*node;
+// 	t_deque	*deque;
 
-	i = argc;
-	deque = new_ydeque(0, NULL);
-	while (--i > 0)
-	{
-		yatoi(argv[i], &n);
-		node = new_ydequenode(n);
-		ydeque_push(deque, node);
-	}
-	return (deque);
-}
+// 	i = argc;
+// 	deque = new_ydeque(0, NULL);
+// 	while (--i > 0)
+// 	{
+// 		yatoi(argv[i], &n);
+// 		node = new_ydequenode(n);
+// 		ydeque_push(deque, node);
+// 	}
+// 	return (deque);
+// }
 
 bool	is_sort_complete(t_engine *engine)
 {
