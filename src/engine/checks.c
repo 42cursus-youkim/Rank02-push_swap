@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 15:55:58 by youkim            #+#    #+#             */
-/*   Updated: 2021/12/20 17:33:11 by youkim           ###   ########.fr       */
+/*   Updated: 2021/12/20 17:43:53 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,35 @@ void	check_duplicate(const int argc, const char *argv[])
 		while (++vec.y < argc)
 		{
 			if (ystrequ(argv[vec.x], argv[vec.y]))
-				yerror("check_duplicate", "duplicate values");
+				yerror("check_duplicate", "duplicate strings!");
 		}
 	}
+}
+
+void	check_numbers_unique(t_deque *deq)
+{
+	t_vec		vec;
+	t_dnode		*curs;
+	int			*arr;
+	const int	size = deq->size;
+
+	vec.x = 0;
+	curs = deq->head;
+	arr = ymalloc(size * sizeof(int));
+	while (++vec.x < size)
+	{
+		arr[vec.x] = curs->num;
+		curs = curs->lower;
+	}
+	vec.x = 0;
+	while (++vec.x < size)
+	{
+		vec.y = vec.x;
+		while (++vec.y < size)
+			if (arr[vec.x] == arr[vec.y])
+				yerror("is_numbers_unique", "duplicate numbers!");
+	}
+	free(arr);
 }
 
 bool	is_sort_complete(t_engine *engine)
@@ -81,5 +107,6 @@ t_deque	*check_and_get_input(const int argc, const char *argv[])
 	deq = new_ydeque(0, NULL);
 	while (++i < argc)
 		add_values(deq, new_ysplit(argv[i], ' '));
+	check_numbers_unique(deq);
 	return (deq);
 }

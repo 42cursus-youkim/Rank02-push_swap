@@ -20,6 +20,7 @@
 ** < checks.c > */
 
 void		check_duplicate(const int argc, const char *argv[]);
+void		check_numbers_unique(t_deque *deq);
 bool		is_sort_complete(t_engine *engine);
 t_deque		*check_and_get_input(const int argc, const char *argv[]);
 /*
