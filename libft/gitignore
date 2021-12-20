@@ -1,0 +1,12 @@
+so_long
+bonus
+test
+test.c
+*.o
+*.py
+*.a
+map/*
+
+so_long.code-workspace
+*.supp
+*.dSYM
