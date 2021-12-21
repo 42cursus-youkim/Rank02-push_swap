@@ -6,7 +6,7 @@
 #    By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/09 14:12:20 by youkim            #+#    #+#              #
-#    Updated: 2021/12/20 18:23:13 by youkim           ###   ########.fr        #
+#    Updated: 2021/12/21 09:44:23 by youkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ INC      := -I includes/ -I libft/includes
 LIBFT    := libft/libft.a
 
 # ===== Test & Debugging =====
-DFLAGS	 := -g3 -DCMAKE_EXE_LINKER_FLAGS="-fsanitize=address"
+DFLAGS	 := #-g3 -DCMAKE_EXE_LINKER_FLAGS="-fsanitize=address"
 VFLAGS   := --leak-check=full --show-leak-kinds=all \
 			--track-origins=yes --show-reachable=no \
 			--suppressions=./libft/macos.supp
@@ -49,12 +49,6 @@ define choose_modules
 	)
 endef
 
-define build_library
-	@$(call log, G, Building $(CU)$(LIBFT)$(V))
-	@make all -C libft/ DFLAGS="$(DFLAGS)"
-	@$(call log, G, Built $(CU)$(LIBFT)$(V))
-endef
-
 # ===== Sources & Objects & Includes =====
 SRC      = $(call choose_modules, $(PKGS))
 OBJ      = $(SRC:%.c=%.o)
@@ -65,7 +59,6 @@ OBJ      = $(SRC:%.c=%.o)
 	@$(CC) $(CFLAGS) $(DFLAGS) $(INC) -c -o $@ $<
 
 $(NAME): $(OBJ) $(LIBFT)
-	@$(call build_library)
 	@$(CC) $(CFLAGS) $(INC) -o $@ $^
 	@$(call log, V, Linked Object files,\
 		\n\twith flag $(R)$(DFLAGS)$(E)$(CFLAGS))
@@ -82,6 +75,11 @@ fclean: clean
 	@$(call log, R, Cleaned Names)
 
 re: fclean all
+
+$(LIBFT):
+	@$(call log, G, Building $(CU)$(LIBFT)$(V))
+	@make all -C libft/ DFLAGS="$(DFLAGS)"
+	@$(call log, G, Built $(CU)$(LIBFT)$(V))
 
 # ===== Custom Rules =====
 red: fclean docs all cls

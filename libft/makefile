@@ -6,7 +6,7 @@
 #    By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/09 14:12:20 by youkim            #+#    #+#              #
-#    Updated: 2021/12/20 18:22:24 by youkim           ###   ########.fr        #
+#    Updated: 2021/12/21 09:44:31 by youkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,8 @@
 NAME     := libft.a
 
 CC       := gcc
-CFLAGS   := -Wall -Wextra -Werror -std=c99
-DFLAGS	 := -g3 #-DCMAKE_EXE_LINKER_FLAGS="-fsanitize=address"
+CFLAGS   := -Wall -Wextra -Werror #-std=c99
+DFLAGS	 := #-g3 #-DCMAKE_EXE_LINKER_FLAGS="-fsanitize=address"
 VFLAGS   := --leak-check=full --show-leak-kinds=all \
 			--track-origins=yes \
 			--suppressions=./macos.supp
