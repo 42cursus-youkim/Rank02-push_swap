@@ -7,8 +7,6 @@ the lowest possible number of actions. To succeed you’ll have to manipulate va
 types of algorithms and choose the one (of many) most appropriate solution for an
 optimized data sorting.
 
-#### 📄 [subject pdf](https://cdn.intra.42.fr/pdf/pdf/35914/en.subject.pdf)
-
 sort with only two deques!
 
 ### Implementation Specifics
